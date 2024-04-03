@@ -1,0 +1,38 @@
+.toggle__label {
+    display: flex;
+    flex-direction: column;
+}
+
+.toggle {
+    background-color: var(--c-fg);
+    width: 5rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle::after {
+    content: url(../assets/img/sun.svg);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    padding-top: 0.1rem;
+    border-radius: 5px;
+    border: 2px solid var(--c-fg);
+    background-color: var(--c-bg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 0.25s;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked+.toggle::after {
+    content: url(../assets/img/moon.svg);
+    transform: translateX(2.5rem);
+}

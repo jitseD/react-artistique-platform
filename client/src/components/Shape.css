@@ -1,0 +1,12 @@
+.shadow__frame {
+    filter: drop-shadow(-10px 10px 20px rgba(13, 13, 12, 0.25));
+}
+
+.shadow__frame--darkmode {
+    filter: drop-shadow(-10px 10px 20px rgba(242, 242, 230, 0.25));
+}
+
+.shadow__shape {
+    filter: blur(5px);
+    opacity: 0.25;
+}

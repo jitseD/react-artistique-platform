@@ -1,0 +1,6 @@
+article {
+    display: grid;
+    grid-template-columns: 1fr 7rem 3.2rem;
+    gap: 1rem;
+    align-items: center;
+}

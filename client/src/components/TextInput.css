@@ -1,0 +1,18 @@
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    border-bottom: 2px solid var(--c-fg);
+    background-color: var(--c-bg);
+    font-size: 1.5rem;
+    transition: background-color 0.25s, border-bottom 0.25s;
+}
+
+input[type="text"]::placeholder {
+    text-transform: capitalize;
+}
+
+input[type="text"]:focus {
+    border-bottom-width: 3px;
+}

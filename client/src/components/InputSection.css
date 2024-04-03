@@ -1,0 +1,11 @@
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    text-transform: capitalize;
+    font-weight: 700;
+}
