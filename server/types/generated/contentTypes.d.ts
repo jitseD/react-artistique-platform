@@ -362,6 +362,84 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiArtworkArtwork extends Schema.CollectionType {
+  collectionName: 'artworks';
+  info: {
+    singularName: 'artwork';
+    pluralName: 'artworks';
+    displayName: 'Artwork';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    darkMode: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
+    shapes: Attribute.JSON & Attribute.Required;
+    dropShadow: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    gradient: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<true>;
+    grain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    linesPattern: Attribute.JSON & Attribute.Required;
+    linesTotal: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 5;
+          max: 15;
+        },
+        number
+      >;
+    linesRotation: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 180;
+        },
+        number
+      >;
+    frameMargin: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 40;
+        },
+        number
+      >;
+    frameDashes: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 50;
+        },
+        number
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::artwork.artwork',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::artwork.artwork',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -798,6 +876,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::artwork.artwork': ApiArtworkArtwork;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

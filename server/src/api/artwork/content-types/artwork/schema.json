@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artworks",
+  "info": {
+    "singularName": "artwork",
+    "pluralName": "artworks",
+    "displayName": "Artwork",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "darkMode": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "shapes": {
+      "type": "json",
+      "required": true
+    },
+    "dropShadow": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "gradient": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "grain": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "linesPattern": {
+      "type": "json",
+      "required": true
+    },
+    "linesTotal": {
+      "type": "integer",
+      "required": true,
+      "max": 15,
+      "min": 5
+    },
+    "linesRotation": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "max": 180
+    },
+    "frameMargin": {
+      "required": true,
+      "min": 40,
+      "type": "integer"
+    },
+    "frameDashes": {
+      "type": "integer",
+      "required": true,
+      "max": 50,
+      "min": 0
+    }
+  }
+}
