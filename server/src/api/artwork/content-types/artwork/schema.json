@@ -61,7 +61,7 @@
       "min": 40,
       "type": "integer",
       "max": 80,
-      "unique": true
+      "unique": false
     },
     "frameDashes": {
       "type": "integer",

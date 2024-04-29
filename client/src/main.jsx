@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from './routes/root';
-import Generator from './routes/generator';
+import Generator from './routes/generator.jsx';
 import Save from './routes/save';
 import Index from './routes/index';
 import Login from './routes/login';
@@ -19,7 +19,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index />
+        element: <Index />,
+        loader: Index.loader,
       },
       {
         path: "/artwork/generate",
