@@ -6,6 +6,14 @@ const getArtworks = async () => {
     return artworks.map(unwrapAtributes);
 }
 
+const getArtworkById = async (id) => {
+    const cheese = await fetchApi({
+        endpoint: `artworks/${id}`,
+        wrappedByKey: "data"
+    });
+    return unwrapAtributes(cheese);
+};
+
 const createArtwork = async (data) => {
     const artwork = await fetchApi(
         {
@@ -23,4 +31,4 @@ const createArtwork = async (data) => {
     return unwrapAtributes(artwork);
 };
 
-export { getArtworks, createArtwork };
+export { getArtworks, getArtworkById, createArtwork };

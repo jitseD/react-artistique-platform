@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, Link } from "react-router-dom"
 import { getArtworks } from "../services/artworks";
 import Canvas from "../components/Canvas";
 
@@ -17,7 +17,7 @@ const Index = () => {
             <ul>
                 {artworks.map((artwork) => (
                     <li key={artwork.id}>
-                        <div>
+                        <Link to={`/artwork/${artwork.id}`}>
                             <p>{artwork.title}</p>
                             {artwork.description && <p>artwork.description</p>}
                             <Canvas
@@ -33,7 +33,7 @@ const Index = () => {
                                     grain: artwork.grain
                                 }}
                             />
-                        </div>
+                        </Link>
                     </li>
                 ))}
             </ul>
