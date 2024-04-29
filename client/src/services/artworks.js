@@ -7,11 +7,11 @@ const getArtworks = async () => {
 }
 
 const getArtworkById = async (id) => {
-    const cheese = await fetchApi({
+    const artwork = await fetchApi({
         endpoint: `artworks/${id}`,
         wrappedByKey: "data"
     });
-    return unwrapAtributes(cheese);
+    return unwrapAtributes(artwork);
 };
 
 const createArtwork = async (data) => {
@@ -27,8 +27,23 @@ const createArtwork = async (data) => {
             },
         }
     );
-    console.log(artwork);
     return unwrapAtributes(artwork);
 };
 
-export { getArtworks, getArtworkById, createArtwork };
+const editArtwork = async (id, data) => {
+    const artwork = await fetchApi(
+        {
+            endpoint: `artworks/${id}`,
+        },
+        {
+            method: "PUT",
+            body: JSON.stringify({ data }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }
+    );
+    return unwrapAtributes(artwork);
+};
+
+export { getArtworks, getArtworkById, createArtwork, editArtwork };

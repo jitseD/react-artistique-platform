@@ -1,24 +1,15 @@
-// import { Form, useNavigate } from "react-router-dom";
 import { Form, useNavigate, redirect } from "react-router-dom";
 
 import { createArtwork } from "../services/artworks";
 
-// const action = async ({ request }) => {
-//     const formData = await request.formData();
-//     const data = Object.fromEntries(formData);
-//     await createArtwork(data);
-//     return redirect(``);
-// };
-
 const action = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log("formdata", data);
     await createArtwork(data);
     return redirect(`/`);
 };
 
-const Save = () => {
+const ArtworkCreate = () => {
     const navigate = useNavigate();
 
     const shapes = [
@@ -174,6 +165,6 @@ const Save = () => {
     )
 }
 
-Save.action = action;
+ArtworkCreate.action = action;
 
-export default Save;
+export default ArtworkCreate;

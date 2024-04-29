@@ -3,12 +3,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Artwork from './routes/artwork';
-import Generator from './routes/generator';
+import ArtworkCreate from './routes/artworkCreate';
+import ArtworkGenerator from './routes/artworkGenerator';
+import ArtworkEdit from './routes/artworkEdit';
+import ArtworkDetail from './routes/artworkDetail';
 import Index from './routes/index';
 import Login from './routes/login';
 import Root from './routes/root';
-import Save from './routes/save';
 
 
 const router = createBrowserRouter([
@@ -25,17 +26,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/artwork/generate",
-        element: <Generator />,
+        element: <ArtworkGenerator />,
       },
       {
-        path: "/artwork/:id",
-        element: <Artwork />,
-        loader: Artwork.loader,
+        path: "/artwork/detail/:id",
+        element: <ArtworkDetail />,
+        loader: ArtworkDetail.loader,
       },
       {
-        path: "/artwork/save",
-        element: <Save />,
-        action: Save.action,
+        path: "/artwork/create",
+        element: <ArtworkCreate />,
+        action: ArtworkCreate.action,
+      },
+      {
+        path: "/artwork/edit/:id",
+        element: <ArtworkEdit />,
+        action: ArtworkEdit.action,
+        loader: ArtworkEdit.loader,
       },
       {
         path: "/login",

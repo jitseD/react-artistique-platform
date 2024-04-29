@@ -33,7 +33,6 @@ const fetchApi = async ({
 };
 
 const unwrapAtributes = (item) => {
-    // return { ...item.id, ...item.attributes };
     return { ...item, ...item.attributes };
 };
 

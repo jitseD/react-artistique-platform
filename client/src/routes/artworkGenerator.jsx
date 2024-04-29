@@ -156,7 +156,7 @@ const App = () => {
             <Slider min={0} max={50} value={frame.dashes} onValueChange={(v) => handleValueChange(`frame`, `dashes`, v)} label="dash array" />
           </SliderWrapper>
         </InputSection>
-        <Link to="/artwork/save">save artwork</Link>
+        <Link to="/artwork/create">save artwork</Link>
       </div>
     </>
   )

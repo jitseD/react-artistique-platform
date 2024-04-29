@@ -10,16 +10,16 @@ const loader = async () => {
 const Index = () => {
 
     const { artworks } = useLoaderData();
-    console.log(artworks);
+
     return (
         <section>
             <h1>Home</h1>
             <ul>
                 {artworks.map((artwork) => (
                     <li key={artwork.id}>
-                        <Link to={`/artwork/${artwork.id}`}>
+                        <Link to={`/artwork/detail/${artwork.id}`}>
                             <p>{artwork.title}</p>
-                            {artwork.description && <p>artwork.description</p>}
+                            {artwork.description && <p>{artwork.description}</p>}
                             <Canvas
                                 frame={{ margin: artwork.frameMargin, dashes: artwork.frameDashes }}
                                 linesPattern={JSON.parse(artwork.linesPattern)}
