@@ -1,9 +1,9 @@
 const fetchApi = async ({
     endpoint,
     query = undefined,
-    wrappedByKey = `data`,
+    wrappedByKey = undefined,
     wrappedByList = undefined,
-}) => {
+}, options) => {
     if (endpoint.startsWith("/")) {
         endpoint = endpoint.slice(1);
     }
@@ -18,7 +18,7 @@ const fetchApi = async ({
 
     console.log("Fetching...", url.toString());
 
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), options);
     let data = await res.json();
 
     if (wrappedByKey) {

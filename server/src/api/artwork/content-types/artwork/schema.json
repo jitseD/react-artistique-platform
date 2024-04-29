@@ -68,6 +68,9 @@
       "required": true,
       "max": 50,
       "min": 0
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

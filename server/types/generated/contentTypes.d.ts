@@ -423,6 +423,7 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
         },
         number
       >;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -24,15 +24,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/artwork/generate",
-        element: <Generator />
+        element: <Generator />,
       },
       {
         path: "/artwork/save",
-        element: <Save />
+        element: <Save />,
+        action: Save.action,
       },
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
     ],
   },
