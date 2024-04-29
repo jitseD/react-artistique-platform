@@ -407,9 +407,11 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
       >;
     frameMargin: Attribute.Integer &
       Attribute.Required &
+      Attribute.Unique &
       Attribute.SetMinMax<
         {
           min: 40;
+          max: 80;
         },
         number
       >;

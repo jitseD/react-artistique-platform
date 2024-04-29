@@ -4,7 +4,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from './routes/root';
-import App from './App.jsx';
+import Generator from './routes/generator';
+import Save from './routes/save';
 import Index from './routes/index';
 import Login from './routes/login';
 
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
         element: <Index />
       },
       {
-        path: "/app",
-        element: <App />
+        path: "/artwork/generate",
+        element: <Generator />
+      },
+      {
+        path: "/artwork/save",
+        element: <Save />
       },
       {
         path: "/login",

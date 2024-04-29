@@ -59,7 +59,9 @@
     "frameMargin": {
       "required": true,
       "min": 40,
-      "type": "integer"
+      "type": "integer",
+      "max": 80,
+      "unique": true
     },
     "frameDashes": {
       "type": "integer",

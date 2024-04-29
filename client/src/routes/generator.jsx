@@ -1,14 +1,15 @@
 import { useState, useContext } from "react";
-import { canvas } from "./context/CanvasContext";
-import Canvas from "./components/Canvas";
-import Chip from "./components/Chip";
-import InputSection from "./components/InputSection";
-import Slider from "./components/Slider";
-import SliderWrapper from "./components/SliderWrapper";
-import ShapeSection from "./components/ShapeSection";
-import TextInput from "./components/TextInput";
-import Toggle from "./components/Toggle";
-import './App.css'
+import { Link } from "react-router-dom";
+import { canvas } from "../context/CanvasContext";
+import Canvas from "../components/Canvas";
+import Chip from "../components/Chip";
+import InputSection from "../components/InputSection";
+import Slider from "../components/Slider";
+import SliderWrapper from "../components/SliderWrapper";
+import ShapeSection from "../components/ShapeSection";
+import TextInput from "../components/TextInput";
+import Toggle from "../components/Toggle";
+import '../styles/generator.css'
 
 
 const generateRandomBool = () => {
@@ -82,7 +83,7 @@ const App = () => {
     }
     setColorMode(newColorMode)
   }
-  
+
   document.documentElement.style.setProperty('--c-fg', colorMode.foreground);
   document.documentElement.style.setProperty('--c-bg', colorMode.background);
 
@@ -155,6 +156,7 @@ const App = () => {
             <Slider min={0} max={50} value={frame.dashes} onValueChange={(v) => handleValueChange(`frame`, `dashes`, v)} label="dash array" />
           </SliderWrapper>
         </InputSection>
+        <Link to="/artwork/save">save artwork</Link>
       </div>
     </>
   )
