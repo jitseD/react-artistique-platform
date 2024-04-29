@@ -32,7 +32,7 @@ body,
     width: 100%;
 }
 
-#root {
+main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
