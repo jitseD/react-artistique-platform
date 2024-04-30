@@ -22,7 +22,7 @@ const Root = () => {
                             to={`/login`}
                             className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
                         >
-                            login
+                            Login
                         </NavLink>
                         <NavLink
                             to={`/signup`}
