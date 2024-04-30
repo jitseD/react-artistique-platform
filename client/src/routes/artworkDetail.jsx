@@ -20,12 +20,9 @@ const ArtworkDetail = () => {
                 shapes={artwork.values.shapes}
                 title={artwork.title}
                 colorMode={{ darkMode: artwork.darkMode, foreground: artwork.darkMode ? "#F2F2E6" : "#0D0D0C", background: artwork.darkMode ? "#0D0D0C" : "#F2F2E6" }}
-                styling={{
-                    dropShadow: artwork.dropShadow,
-                    gradient: artwork.gradient,
-                    grain: artwork.grain
-                }}
+                styling={{ dropShadow: artwork.dropShadow, gradient: artwork.gradient, grain: artwork.grain }}
             />
+            {artwork.description && <p>{artwork.description}</p>}
             {artwork.creater.data && (
                 <div>
                     <p>Created by</p>

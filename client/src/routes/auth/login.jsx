@@ -17,7 +17,6 @@ const action = async ({ request }) => {
         };
     }
     let redirectTo = formData.get("redirectTo");
-    console.log(redirectTo);
     return redirect(redirectTo || "/");
 };
 
@@ -26,11 +25,8 @@ const Login = () => {
     let params = new URLSearchParams(location.search);
     let from = params.get("from") || "/";
 
-    console.log(from);
-
     let navigation = useNavigation();
     let isLoggingIn = navigation.formData?.get("email") != null;
-
     let actionData = useActionData();
 
     return (

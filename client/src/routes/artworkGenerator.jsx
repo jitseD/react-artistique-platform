@@ -3,13 +3,14 @@ import { Form, redirect } from "react-router-dom";
 import { canvas } from "../context/CanvasContext";
 import { getAuthData } from "../services/auth";
 import Canvas from "../components/Canvas";
-import Chip from "../components/Chip";
-import InputSection from "../components/InputSection";
-import Slider from "../components/Slider";
-import SliderWrapper from "../components/SliderWrapper";
-import ShapeSection from "../components/ShapeSection";
-import TextInput from "../components/TextInput";
-import Toggle from "../components/Toggle";
+import Inputs from "../components/Inputs";
+// import Chip from "../components/Chip";
+// import InputSection from "../components/InputSection";
+// import Slider from "../components/Slider";
+// import SliderWrapper from "../components/SliderWrapper";
+// import ShapeSection from "../components/ShapeSection";
+// import TextInput from "../components/TextInput";
+// import Toggle from "../components/Toggle";
 import '../styles/generator.css'
 
 import { createArtwork } from "../services/artworks";
@@ -54,7 +55,6 @@ const generateRandomLinePattern = (id, canvasContext, margin) => {
 
   return { id, pos: { x: randomX, y: randomY } };
 }
-
 
 const generateRandomShape = (id, canvasContext, margin) => {
   const randomSize = Math.floor(Math.random() * 150) + 50;
@@ -135,7 +135,8 @@ const App = () => {
       <div className="frame">
         <Canvas
           frame={frame}
-          linesPattern={linesPattern} lines={lines}
+          linesPattern={linesPattern}
+          lines={lines}
           shapes={shapes}
           title={title}
           colorMode={colorMode}
@@ -143,39 +144,14 @@ const App = () => {
         />
       </div>
       <div className="inputs">
-        <div className="intro__wrapper">
-          <TextInput label="title" value={title} onValueChange={(v) => setTitle(v)} />
-          <Toggle label="mode" value={colorMode.darkMode} onValueChange={handleColorModeChange} />
-          <div className="chips__wrapper">
-            <Chip name="drop shadow" value={styling.dropShadow} onClickChip={() => handleStylingChange("dropShadow")} />
-            <Chip name="gradient" value={styling.gradient} onClickChip={() => handleStylingChange("gradient")} />
-            <Chip name="grain" value={styling.grain} onClickChip={() => handleStylingChange("grain")} />
-          </div>
-        </div>
-        <InputSection title="shapes">
-          <SliderWrapper>
-            {shapes.map((shape, i) => (
-              <ShapeSection
-                key={shape.id}
-                size={shape.size} onSliderChange={(v) => handleValueChange(`shapes`, `size`, { index: i, value: v })}
-                color={shape.color} onColorChange={(v) => handleValueChange(`shapes`, `color`, { index: i, value: v })}
-                onReposition={(v) => handleValueChange(`shapes`, `pos`, { index: i, value: v })}
-              />
-            ))}
-          </SliderWrapper>
-        </InputSection>
-        <InputSection title="lines">
-          <SliderWrapper>
-            <Slider min={5} max={15} value={lines.total} onValueChange={(v) => handleValueChange(`lines`, `total`, v)} label="number of lines" />
-            <Slider min={0} max={180} value={lines.rotation} onValueChange={(v) => handleValueChange(`lines`, `rotation`, v)} label="rotation" />
-          </SliderWrapper>
-        </InputSection>
-        <InputSection title="frame">
-          <SliderWrapper>
-            <Slider min={40} max={80} value={frame.margin} onValueChange={(v) => handleValueChange(`frame`, `margin`, v)} label="margin" />
-            <Slider min={0} max={50} value={frame.dashes} onValueChange={(v) => handleValueChange(`frame`, `dashes`, v)} label="dash array" />
-          </SliderWrapper>
-        </InputSection>
+        <Inputs
+          title={title} onTitleChange={(v) => setTitle(v)}
+          colorMode={colorMode} onColorModeChange={handleColorModeChange}
+          styling={styling} onDropShadowChange={() => handleStylingChange("dropShadow")} onGradientChange={() => handleStylingChange("gradient")} onGrainChange={() => handleStylingChange("grain")}
+          shapes={shapes} onSizeChange={(v, i) => handleValueChange(`shapes`, `size`, { index: i, value: v })} onColorChange={(v, i) => handleValueChange(`shapes`, `color`, { index: i, value: v })} onRepositionChange={(v, i) => handleValueChange(`shapes`, `pos`, { index: i, value: v })}
+          lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
+          frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
+        />
         <Form method="post" id="artwork-form">
           <input type="hidden" name="title" value={title} />
           <label>
@@ -187,7 +163,7 @@ const App = () => {
           <input type="hidden" name="gradient" value={styling.gradient} />
           <input type="hidden" name="grain" value={styling.grain} />
           <input type="hidden" name="values" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
-          <button className="button" type="submit">Save</button>
+          <button className="button" type="submit">create</button>
         </Form>
       </div>
     </>

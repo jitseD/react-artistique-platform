@@ -9,30 +9,30 @@ const Canvas = ({ id, frame, linesPattern, lines, shapes, title, colorMode, styl
     const canvasContext = useContext(canvas);
 
     return (
-        <svg viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
-            <defs>
-                <filter id="noise">
-                    <feTurbulence type="fractalNoise" baseFrequency="200" numOctaves="100" result="turbulence" />
-                    <feComposite operator="in" in="turbulence" in2="SourceAlpha" result="composite" />
-                    <feColorMatrix in="composite" type="luminanceToAlpha" />
-                    <feBlend in="SourceGraphic" in2="composite" mode="color-burn" />
-                </filter>
-            </defs>
-            <rect // background
-                x="0" y="0" width="100%" height="100%"
-                fill={colorMode.background}
-            />
+            <svg viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
+                <defs>
+                    <filter id="noise">
+                        <feTurbulence type="fractalNoise" baseFrequency="200" numOctaves="100" result="turbulence" />
+                        <feComposite operator="in" in="turbulence" in2="SourceAlpha" result="composite" />
+                        <feColorMatrix in="composite" type="luminanceToAlpha" />
+                        <feBlend in="SourceGraphic" in2="composite" mode="color-burn" />
+                    </filter>
+                </defs>
+                <rect // background
+                    x="0" y="0" width="100%" height="100%"
+                    fill={colorMode.background}
+                />
 
-            {linesPattern.map(linePattern => (
-                <Lines key={linePattern.id} linePattern={linePattern} lines={lines} colorMode={colorMode} />
-            ))}
+                {linesPattern.map(linePattern => (
+                    <Lines key={linePattern.id} linePattern={linePattern} lines={lines} colorMode={colorMode} />
+                ))}
 
-            {shapes.map((value) => (
-                <Shape key={value.id} shapeId={id ? `${id}-${value.id}` : value.id} value={value} colorMode={colorMode} styling={styling} />
-            ))}
+                {shapes.map((value) => (
+                    <Shape key={value.id} shapeId={id ? `${id}-${value.id}` : value.id} value={value} colorMode={colorMode} styling={styling} />
+                ))}
 
-            <Frame styling={styling} colorMode={colorMode} frame={frame} title={title} />
-        </svg>
+                <Frame styling={styling} colorMode={colorMode} frame={frame} title={title} />
+            </svg>
     )
 }
 

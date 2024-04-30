@@ -1,4 +1,5 @@
-import './Reset.css'
+import  './styles/reset.css'
+import  './styles/style.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";

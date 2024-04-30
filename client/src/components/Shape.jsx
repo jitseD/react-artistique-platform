@@ -4,7 +4,6 @@ import "./Shape.css"
 const Shape = ({ shapeId, value, colorMode, styling }) => {
     const gradientId = `gradient-${shapeId}`;
     const fadeId = `fade-${shapeId}`;
-    console.log(shapeId);
 
     return (
         <>

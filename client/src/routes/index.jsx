@@ -18,9 +18,6 @@ const Index = () => {
                     <li key={artwork.id}>
                         <Link to={`/artwork/detail/${artwork.id}`}>
                             <p>{artwork.title}</p>
-                            <p>size: {artwork.values.shapes[0].size}</p>
-                            <p>pos.x: {artwork.values.shapes[0].pos.x}</p>
-                            <p>pos.y: {artwork.values.shapes[0].pos.y}</p>
                             {artwork.description && <p>{artwork.description}</p>}
                             <Canvas
                                 id={artwork.id}
