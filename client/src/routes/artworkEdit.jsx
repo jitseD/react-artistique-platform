@@ -1,4 +1,4 @@
-import { Form, useNavigate, redirect, useLoaderData } from "react-router-dom";
+import { Form, redirect, useLoaderData } from "react-router-dom";
 import { getArtworkById, editArtwork } from "../services/artworks";
 
 const loader = async ({ params }) => {
@@ -15,12 +15,12 @@ const action = async ({ request, params }) => {
 
 const ArtworkEdit = () => {
     const { artwork } = useLoaderData();
-    const navigate = useNavigate();
+    console.log(artwork);
 
     return (
         <section>
             <h1>Save</h1>
-            <Form method="post" id="artwork-form">
+            {/* <Form method="post" id="artwork-form">
                 <label>
                     Title
                     <input placeholder="title" type="text" name="title" defaultValue={artwork.title} />
@@ -78,6 +78,19 @@ const ArtworkEdit = () => {
                 >
                     Cancel
                 </button>
+            </Form> */}
+            <Form method="post" id="artwork-form">
+                <input type="hidden" name="title" defaultValue={artwork.title} />
+                <label>
+                    Description
+                    <textarea name="description" rows={6} defaultValue={artwork.description} />
+                </label>
+                <input type="text" name="darkMode" defaultValue={artwork.darkMode} />
+                <input type="text" name="dropShadow" defaultValue={artwork.dropShadow} />
+                <input type="text" name="gradient" defaultValue={artwork.gradient} />
+                <input type="text" name="grain" defaultValue={artwork.grain} />
+                <input type="text" name="data" defaultValue={artwork.data} />
+                <button className="button" type="submit">Save</button>
             </Form>
         </section>
     )

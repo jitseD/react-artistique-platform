@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Form, redirect } from "react-router-dom";
 import { canvas } from "../context/CanvasContext";
 import Canvas from "../components/Canvas";
 import Chip from "../components/Chip";
@@ -11,6 +11,14 @@ import TextInput from "../components/TextInput";
 import Toggle from "../components/Toggle";
 import '../styles/generator.css'
 
+import { createArtwork } from "../services/artworks";
+
+const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  await createArtwork(data);
+  return redirect(`/`);
+};
 
 const generateRandomBool = () => {
   return Math.random() < 0.5
@@ -24,7 +32,7 @@ const generateRandomFrame = () => {
 
 const generateRandomLines = () => {
   const total = Math.floor(Math.random() * 10) + 5;
-  const rotation = Math.floor(Math.random() * 360);
+  const rotation = Math.floor(Math.random() * 180);
   return { total, rotation };
 }
 
@@ -156,10 +164,24 @@ const App = () => {
             <Slider min={0} max={50} value={frame.dashes} onValueChange={(v) => handleValueChange(`frame`, `dashes`, v)} label="dash array" />
           </SliderWrapper>
         </InputSection>
-        <Link to="/artwork/create">save artwork</Link>
+        <Form method="post" id="artwork-form">
+          <input type="hidden" name="title" value={title} />
+          <label>
+            Description
+            <textarea name="description" rows={6} />
+          </label>
+          <input type="hidden" name="darkMode" value={colorMode.darkMode} />
+          <input type="hidden" name="dropShadow" value={styling.dropShadow} />
+          <input type="hidden" name="gradient" value={styling.gradient} />
+          <input type="hidden" name="grain" value={styling.grain} />
+          <input type="hidden" name="data" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
+          <button className="button" type="submit">Save</button>
+        </Form>
       </div>
     </>
   )
 }
+
+App.action = action;
 
 export default App

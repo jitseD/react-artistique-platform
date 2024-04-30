@@ -9,14 +9,16 @@ const loader = async ({ params }) => {
 
 const ArtworkDetail = () => {
     const { artwork } = useLoaderData();
-    
+    console.log(artwork);
+
     return (
         <>
             <Canvas
-                frame={{ margin: artwork.frameMargin, dashes: artwork.frameDashes }}
-                linesPattern={JSON.parse(artwork.linesPattern)}
-                lines={{ total: artwork.linesTotal, rotation: artwork.linesRotation }}
-                shapes={JSON.parse(artwork.shapes)}
+                id={artwork.id}
+                frame={JSON.parse(artwork.data).frame}
+                linesPattern={JSON.parse(artwork.data).linesPattern}
+                lines={JSON.parse(artwork.data).lines}
+                shapes={JSON.parse(artwork.data).shapes}
                 title={artwork.title}
                 colorMode={{ darkMode: artwork.darkMode, foreground: artwork.darkMode ? "#F2F2E6" : "#0D0D0C", background: artwork.darkMode ? "#0D0D0C" : "#F2F2E6" }}
                 styling={{

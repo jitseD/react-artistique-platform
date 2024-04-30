@@ -378,7 +378,6 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
     darkMode: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<false>;
-    shapes: Attribute.JSON & Attribute.Required;
     dropShadow: Attribute.Boolean &
       Attribute.Required &
       Attribute.DefaultTo<true>;
@@ -386,44 +385,8 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
       Attribute.Required &
       Attribute.DefaultTo<true>;
     grain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
-    linesPattern: Attribute.JSON & Attribute.Required;
-    linesTotal: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 5;
-          max: 15;
-        },
-        number
-      >;
-    linesRotation: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-          max: 180;
-        },
-        number
-      >;
-    frameMargin: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 40;
-          max: 80;
-        },
-        number
-      >;
-    frameDashes: Attribute.Integer &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: 0;
-          max: 50;
-        },
-        number
-      >;
     description: Attribute.Text;
+    data: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

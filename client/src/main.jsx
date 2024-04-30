@@ -3,13 +3,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import ArtworkCreate from './routes/artworkCreate';
 import ArtworkGenerator from './routes/artworkGenerator';
 import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
 import Index from './routes/index';
-import Login from './routes/login';
+import Login from './routes/auth/login';
 import Root from './routes/root';
+import Signup from './routes/auth/signup';
 
 
 const router = createBrowserRouter([
@@ -27,16 +27,12 @@ const router = createBrowserRouter([
       {
         path: "/artwork/generate",
         element: <ArtworkGenerator />,
+        action: ArtworkGenerator.action,
       },
       {
         path: "/artwork/detail/:id",
         element: <ArtworkDetail />,
         loader: ArtworkDetail.loader,
-      },
-      {
-        path: "/artwork/create",
-        element: <ArtworkCreate />,
-        action: ArtworkCreate.action,
       },
       {
         path: "/artwork/edit/:id",
@@ -47,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
     ],
   },

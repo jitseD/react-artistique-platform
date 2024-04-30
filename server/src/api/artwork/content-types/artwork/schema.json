@@ -21,10 +21,6 @@
       "default": false,
       "required": true
     },
-    "shapes": {
-      "type": "json",
-      "required": true
-    },
     "dropShadow": {
       "type": "boolean",
       "default": true,
@@ -40,37 +36,11 @@
       "default": true,
       "required": true
     },
-    "linesPattern": {
-      "type": "json",
-      "required": true
-    },
-    "linesTotal": {
-      "type": "integer",
-      "required": true,
-      "max": 15,
-      "min": 5
-    },
-    "linesRotation": {
-      "type": "integer",
-      "required": true,
-      "min": 0,
-      "max": 180
-    },
-    "frameMargin": {
-      "required": true,
-      "min": 40,
-      "type": "integer",
-      "max": 80,
-      "unique": false
-    },
-    "frameDashes": {
-      "type": "integer",
-      "required": true,
-      "max": 50,
-      "min": 0
-    },
     "description": {
       "type": "text"
+    },
+    "data": {
+      "type": "json"
     }
   }
 }

@@ -5,8 +5,10 @@ import Frame from "./Frame";
 import Lines from "./Lines";
 import Shape from "./Shape";
 
-const Canvas = ({ frame, linesPattern, lines, shapes, title, colorMode, styling }) => {
+const Canvas = ({ id, frame, linesPattern, lines, shapes, title, colorMode, styling }) => {
     const canvasContext = useContext(canvas);
+
+    console.log(id, shapes);
 
     return (
         <svg viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
@@ -28,7 +30,7 @@ const Canvas = ({ frame, linesPattern, lines, shapes, title, colorMode, styling 
             ))}
 
             {shapes.map((value) => (
-                <Shape key={value.id} value={value} colorMode={colorMode} styling={styling} />
+                <Shape key={`${id}-${value.id}`} value={value} colorMode={colorMode} styling={styling} />
             ))}
 
             <Frame styling={styling} colorMode={colorMode} frame={frame} title={title} />
@@ -37,6 +39,7 @@ const Canvas = ({ frame, linesPattern, lines, shapes, title, colorMode, styling 
 }
 
 Canvas.propTypes = {
+    id: PropTypes.number,
     frame: PropTypes.object.isRequired,
     linesPattern: PropTypes.array.isRequired,
     lines: PropTypes.object.isRequired,

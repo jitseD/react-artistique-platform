@@ -24,6 +24,12 @@ const Root = () => {
                         >
                             login
                         </NavLink>
+                        <NavLink
+                            to={`/signup`}
+                            className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
+                        >
+                            signup
+                        </NavLink>
                     </ul>
                 </nav>
             </header>
