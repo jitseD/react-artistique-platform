@@ -41,6 +41,12 @@
     },
     "data": {
       "type": "json"
+    },
+    "creater": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "artworks"
     }
   }
 }

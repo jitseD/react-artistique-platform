@@ -49,45 +49,30 @@ const Register = () => {
                 <div>
                     <label htmlFor="email">Username</label>
                     <input
-                        type="text"
-                        name="username"
-                        id="username"
-                        placeholder="username"
-                        autoComplete="username"
-                        defaultValue="tester-0"
+                        id="username" name="username" type="text"
+                        placeholder="username" autoComplete="username"
                     />
                     <ErrorField data={actionData} field="username" />
                 </div>
                 <div>
                     <label htmlFor="email">Email</label>
                     <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="e-mail"
-                        autoComplete="email"
-                        defaultValue="tester@devine.be"
+                        id="email" name="email" type="email"
+                        placeholder="e-mail" autoComplete="email"
                     />
                     <ErrorField data={actionData} field="email" />
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
                     <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="password"
-                        autoComplete="current-password"
-                        defaultValue="tester"
+                        id="password" name="password" type="password"
+                        placeholder="password" autoComplete="current-password"
                     />
                     <ErrorField data={actionData} field="password" />
                 </div>
                 <div>
                     <ErrorField data={actionData} field="general" />
-                    <button
-                        type="submit"
-                        disabled={isLoggingIn}
-                    >
+                    <button type="submit" disabled={isLoggingIn} >
                         {isLoggingIn ? "Sending..." : "Sign up"}
                     </button>
                 </div>

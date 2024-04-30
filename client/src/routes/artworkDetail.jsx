@@ -27,6 +27,9 @@ const ArtworkDetail = () => {
                     grain: artwork.grain
                 }}
             />
+            {artwork.creater.data && (
+                <p>Created by {artwork.creater.data.attributes.username} </p>
+            )}
             <Link to={`/artwork/edit/${artwork.id}`}>edit</Link>
         </>
     )

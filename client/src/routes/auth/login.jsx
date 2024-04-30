@@ -36,7 +36,7 @@ const Login = () => {
     return (
         <section>
             <hgroup>
-                <h2>Sign in</h2>
+                <h2>Log in</h2>
                 <p>Get access to all the features</p>
             </hgroup>
             <Form method="post">
@@ -44,11 +44,8 @@ const Login = () => {
                 <div>
                     <label htmlFor="email">Email</label>
                     <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="e-mail"
-                        autoComplete="email"
+                        id="email" name="email" type="email"
+                        placeholder="e-mail" autoComplete="email"
                         defaultValue="tester@devine.be"
                     />
                     <ErrorField data={actionData} field="email" />
@@ -56,22 +53,17 @@ const Login = () => {
                 <div>
                     <label htmlFor="password">Password</label>
                     <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Password"
-                        autoComplete="current-password"
+                        id="password" name="password" type="password"
+                        placeholder="Password" autoComplete="current-password"
                         defaultValue="tester"
                     />
                     <ErrorField data={actionData} field="password" />
                 </div>
                 <div>
-                    <button
-                        type="submit"
-                        disabled={isLoggingIn}
-                    >
+                    <button type="submit" disabled={isLoggingIn} >
                         {isLoggingIn ? "Logging in..." : "Login"}
-                    </button>                </div>
+                    </button>
+                </div>
             </Form>
         </section>
     );

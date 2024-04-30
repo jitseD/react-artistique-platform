@@ -387,6 +387,11 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
     grain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     description: Attribute.Text;
     data: Attribute.JSON;
+    creater: Attribute.Relation<
+      'api::artwork.artwork',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -766,6 +771,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    artworks: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::artwork.artwork'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
