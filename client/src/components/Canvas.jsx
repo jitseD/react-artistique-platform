@@ -28,7 +28,7 @@ const Canvas = ({ id, frame, linesPattern, lines, shapes, title, colorMode, styl
             ))}
 
             {shapes.map((value) => (
-                <Shape key={`${id}-${value.id}`} value={value} colorMode={colorMode} styling={styling} />
+                <Shape key={value.id} shapeId={id ? `${id}-${value.id}` : value.id} value={value} colorMode={colorMode} styling={styling} />
             ))}
 
             <Frame styling={styling} colorMode={colorMode} frame={frame} title={title} />
