@@ -19,10 +19,10 @@ const AuthStatus = () => {
                 login
             </NavLink>
             <NavLink
-                to={`/signup`}
+                to={`/register`}
                 className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
             >
-                signup
+                register
             </NavLink>
         </>
     );

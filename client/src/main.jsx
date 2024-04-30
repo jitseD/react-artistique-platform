@@ -9,7 +9,7 @@ import ArtworkDetail from './routes/artworkDetail';
 import Index from './routes/index';
 import Login from './routes/auth/login';
 import Root from './routes/root';
-import Signup from './routes/auth/signup';
+import Register from './routes/auth/register';
 
 
 const router = createBrowserRouter([
@@ -47,8 +47,9 @@ const router = createBrowserRouter([
         action: Login.action,
       },
       {
-        path: "/signup",
-        element: <Signup />,
+        path: "/register",
+        element: <Register />,
+        action: Register.action,
       },
     ],
   },
