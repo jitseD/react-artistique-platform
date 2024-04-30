@@ -1,7 +1,10 @@
-import { useRouteLoaderData, NavLink } from "react-router-dom";
+import { useRouteLoaderData, NavLink, useFetcher } from "react-router-dom";
+
 
 const AuthStatus = () => {
     let { user } = useRouteLoaderData("root");
+    const fetcher = useFetcher();
+    let isLoggingOut = fetcher.formData != null;
 
     return user ? (
         <>
@@ -11,11 +14,11 @@ const AuthStatus = () => {
             >
                 create
             </NavLink>
-            <NavLink
-                to={`/logout`}
-            >
-                logout
-            </NavLink>
+            <fetcher.Form method="post" action="/logout">
+                <button type="submit" disabled={isLoggingOut}>
+                    {isLoggingOut ? "Signing out..." : "Sign out"}
+                </button>
+            </fetcher.Form>
         </>
     ) : (
         <>

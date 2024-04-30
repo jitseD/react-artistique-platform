@@ -3,7 +3,7 @@ import { getArtworkById, editArtwork } from "../services/artworks";
 import { getAuthData } from "../services/auth";
 
 const loader = async ({ params }) => {
-    const { user } = getAuthData;
+    const { user } = getAuthData();
     const artwork = await getArtworkById(params.id);
     if (!user) {
         return redirect(`/artwork/detail/${params.id}`);
@@ -17,13 +17,13 @@ const loader = async ({ params }) => {
 const action = async ({ request, params }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
+    data.values = JSON.parse(data.values);
     await editArtwork(params.id, data);
     return redirect(`/`);
 };
 
 const ArtworkEdit = () => {
     const { artwork } = useLoaderData();
-    console.log(artwork);
 
     return (
         <section>
@@ -38,7 +38,7 @@ const ArtworkEdit = () => {
                 <input type="text" name="dropShadow" defaultValue={artwork.dropShadow} />
                 <input type="text" name="gradient" defaultValue={artwork.gradient} />
                 <input type="text" name="grain" defaultValue={artwork.grain} />
-                <input type="text" name="data" defaultValue={artwork.data} />
+                <input type="text" name="values" defaultValue={JSON.stringify(artwork.values)} />
                 <button className="button" type="submit">Save</button>
             </Form>
         </section>

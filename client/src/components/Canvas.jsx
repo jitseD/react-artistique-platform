@@ -8,8 +8,6 @@ import Shape from "./Shape";
 const Canvas = ({ id, frame, linesPattern, lines, shapes, title, colorMode, styling }) => {
     const canvasContext = useContext(canvas);
 
-    console.log(id, shapes);
-
     return (
         <svg viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
             <defs>

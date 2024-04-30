@@ -16,7 +16,7 @@ const action = async ({ request }) => {
             error: { general: error.message },
         };
     }
-    let redirectTo = formData.get("redirectTo") | null;
+    let redirectTo = formData.get("redirectTo");
     console.log(redirectTo);
     return redirect(redirectTo || "/");
 };

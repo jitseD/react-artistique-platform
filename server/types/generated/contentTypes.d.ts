@@ -371,7 +371,7 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
@@ -386,7 +386,7 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
       Attribute.DefaultTo<true>;
     grain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     description: Attribute.Text;
-    data: Attribute.JSON;
+    values: Attribute.JSON;
     creater: Attribute.Relation<
       'api::artwork.artwork',
       'manyToOne',
@@ -394,7 +394,6 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::artwork.artwork',
       'oneToOne',

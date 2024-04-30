@@ -27,6 +27,7 @@ const loader = async ({ request }) => {
 const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
+  data.values = JSON.parse(data.values);
   await createArtwork(data);
   return redirect(`/`);
 };
@@ -185,7 +186,7 @@ const App = () => {
           <input type="hidden" name="dropShadow" value={styling.dropShadow} />
           <input type="hidden" name="gradient" value={styling.gradient} />
           <input type="hidden" name="grain" value={styling.grain} />
-          <input type="hidden" name="data" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
+          <input type="hidden" name="values" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
           <button className="button" type="submit">Save</button>
         </Form>
       </div>

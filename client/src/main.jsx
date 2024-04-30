@@ -66,8 +66,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/logout",
-        loader: async () => {
-          await removeAuthData();
+        action: () => {
+          removeAuthData();
           return redirect(`/`)
         }
       },

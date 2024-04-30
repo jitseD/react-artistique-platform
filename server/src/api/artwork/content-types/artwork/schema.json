@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -39,7 +39,7 @@
     "description": {
       "type": "text"
     },
-    "data": {
+    "values": {
       "type": "json"
     },
     "creater": {
