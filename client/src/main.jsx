@@ -1,10 +1,11 @@
 import './Reset.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
+import { removeAuthData } from './services/auth';
 
 import Login from './routes/auth/login';
-import User from './routes/auth/user';
+import Profile from './routes/auth/profile';
 import Register from './routes/auth/register';
 
 import ArtworkGenerator from './routes/artworkGenerator';
@@ -12,7 +13,7 @@ import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
 import Index from './routes/index';
 import Root from './routes/root';
-
+import User from './routes/user';
 
 const router = createBrowserRouter([
   {
@@ -54,9 +55,21 @@ const router = createBrowserRouter([
         action: Register.action,
       },
       {
+        path: "/profile/:id",
+        element: <Profile />,
+        loader: Profile.loader,
+      },
+      {
         path: "/user/:id",
         element: <User />,
         loader: User.loader,
+      },
+      {
+        path: "/logout",
+        loader: async () => {
+          await removeAuthData();
+          return redirect(`/`)
+        }
       },
     ],
   },
