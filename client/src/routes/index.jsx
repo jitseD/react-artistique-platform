@@ -11,8 +11,7 @@ const Index = () => {
     const { artworks } = useLoaderData();
 
     return (
-        <section>
-            <h1>Home</h1>
+        <main className="main--index">
             <ul>
                 {artworks.map((artwork) => (
                     <li key={artwork.id}>
@@ -37,7 +36,7 @@ const Index = () => {
                     </li>
                 ))}
             </ul>
-        </section>
+        </main>
     )
 }
 

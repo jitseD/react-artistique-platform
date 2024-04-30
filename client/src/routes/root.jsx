@@ -1,6 +1,10 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { useState } from "react"
+import { Outlet } from "react-router-dom";
 import AuthStatus from "../components/AuthStatus";
 import { getAuthData } from "../services/auth";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+
+
 
 const loader = async () => {
     const data = getAuthData();
@@ -8,24 +12,27 @@ const loader = async () => {
 };
 
 const Root = () => {
+
+    const [naviationVisble, setNavigationVisible] = useState(false);
+
     return (
         <>
-            <header>
-                <nav>
-                    <ul>
-                        <NavLink
-                            to={`/`}
-                            className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-                        >
-                            home
-                        </NavLink>
-                        <AuthStatus />
-                    </ul>
-                </nav>
-            </header>
-            <main>
-                <Outlet />
-            </main>
+            {naviationVisble ? (
+                <header onMouseLeave={() => setNavigationVisible(false)}>
+                    <div className="hamburger__wrapper" onClick={() => setNavigationVisible(false)}>
+                        <RxCross2 />
+                    </div>
+                    <AuthStatus />
+                </header>
+            ) : (
+                <header onMouseEnter={() => setNavigationVisible(true)}>
+                    <div className="hamburger__wrapper" onMouseEnter={() => setNavigationVisible(true)} onClick={() => setNavigationVisible(true)}>
+                        <RxHamburgerMenu />
+                    </div>
+                </header>
+            )}
+
+            <Outlet />
         </>
     );
 };

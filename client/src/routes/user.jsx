@@ -17,7 +17,7 @@ const Profile = () => {
     const { user } = useLoaderData();
 
     return (
-        <>
+        <main  className="main--user">
             <p>{user.username}</p>
             <p>
                 {user.artworks.length > 0 ? "user has artworks" : "user has no artworks"}
@@ -29,7 +29,7 @@ const Profile = () => {
                     ))}
                 </ul>
             }
-        </>
+        </main>
     )
 }
 

@@ -2,6 +2,7 @@ input[type="text"] {
     appearance: none;
     outline: none;
     border: none;
+    resize: none;
     width: 100%;
     border-bottom: 2px solid var(--c-fg);
     background-color: var(--c-bg);
@@ -9,7 +10,7 @@ input[type="text"] {
     transition: background-color 0.25s, border-bottom 0.25s;
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder{
     text-transform: capitalize;
 }
 

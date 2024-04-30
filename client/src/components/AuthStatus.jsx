@@ -7,34 +7,55 @@ const AuthStatus = () => {
     let isLoggingOut = fetcher.formData != null;
 
     return user ? (
-        <>
-            <NavLink
-                to={`/artwork/generate`}
-                className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-            >
-                create
-            </NavLink>
-            <fetcher.Form method="post" action="/logout">
-                <button type="submit" disabled={isLoggingOut}>
-                    {isLoggingOut ? "Signing out..." : "Sign out"}
-                </button>
-            </fetcher.Form>
-        </>
+        <nav className="nav__bar">
+            <div className="nav__links">
+                <NavLink
+                    to={`/`}
+                    className={`nav__link`}
+                >
+                    artworks
+                </NavLink>
+                <NavLink
+                    to="/artwork/generate"
+                    className="nav__link"
+                >
+                    create
+                </NavLink>
+            </div>
+
+            <div className="nav__buttons">
+                <fetcher.Form method="post" action="/logout">
+                    <button className="nav__button nav__button--primary" type="submit" disabled={isLoggingOut}>
+                        {isLoggingOut ? "Signing out..." : "Sign out"}
+                    </button>
+                </fetcher.Form>
+            </div>
+        </nav>
     ) : (
-        <>
-            <NavLink
-                to={`/login`}
-                className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-            >
-                login
-            </NavLink>
-            <NavLink
-                to={`/register`}
-                className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-            >
-                register
-            </NavLink>
-        </>
+        <nav className="nav__bar">
+            <div className="nav__links">
+                <NavLink
+                    to={`/`}
+                    className={`nav__link`}
+                >
+                    artworks
+                </NavLink>
+            </div>
+            <div className="nav__buttons">
+                <NavLink
+                    to={`/login`}
+                    className="nav__link button nav__button nav__button--primary"
+                >
+                    login
+                </NavLink>
+                <NavLink
+                    to={`/register`}
+                    className="nav__link button nav__button nav__button--primary"
+                >
+                    register
+                </NavLink>
+            </div>
+        </nav>
     );
 };
 

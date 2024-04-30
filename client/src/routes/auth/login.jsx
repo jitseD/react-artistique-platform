@@ -30,7 +30,7 @@ const Login = () => {
     let actionData = useActionData();
 
     return (
-        <section>
+        <main className="main--login">
             <hgroup>
                 <h2>Log in</h2>
                 <p>Get access to all the features</p>
@@ -61,7 +61,7 @@ const Login = () => {
                     </button>
                 </div>
             </Form>
-        </section>
+        </main>
     );
 };
 

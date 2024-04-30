@@ -91,6 +91,9 @@ const App = () => {
     generateRandomShape("shape6", canvasContext, frame.margin),
   ]);
 
+  document.documentElement.style.setProperty('--c-fg', colorMode.foreground);
+  document.documentElement.style.setProperty('--c-bg', colorMode.background);
+
   const handleColorModeChange = () => {
     const newColorMode = structuredClone(colorMode);
     newColorMode.darkMode = !colorMode.darkMode
@@ -103,16 +106,11 @@ const App = () => {
     }
     setColorMode(newColorMode)
   }
-
-  document.documentElement.style.setProperty('--c-fg', colorMode.foreground);
-  document.documentElement.style.setProperty('--c-bg', colorMode.background);
-
   const handleStylingChange = (property) => {
     const newStyling = structuredClone(styling);
     newStyling[property] = !styling[property]
     setStyling(newStyling)
   }
-
   const handleValueChange = (type, property, value) => {
     switch (type) {
       case `shapes`:
@@ -128,9 +126,10 @@ const App = () => {
     }
   }
 
+  const [formVisible, setFormVisible] = useState(false);
 
   return (
-    <>
+    <main className="main--generator">
       <h1 className="title">React Artistique</h1>
       <div className="frame">
         <Canvas
@@ -144,29 +143,41 @@ const App = () => {
         />
       </div>
       <div className="inputs">
-        <Inputs
-          title={title} onTitleChange={(v) => setTitle(v)}
-          colorMode={colorMode} onColorModeChange={handleColorModeChange}
-          styling={styling} onDropShadowChange={() => handleStylingChange("dropShadow")} onGradientChange={() => handleStylingChange("gradient")} onGrainChange={() => handleStylingChange("grain")}
-          shapes={shapes} onSizeChange={(v, i) => handleValueChange(`shapes`, `size`, { index: i, value: v })} onColorChange={(v, i) => handleValueChange(`shapes`, `color`, { index: i, value: v })} onRepositionChange={(v, i) => handleValueChange(`shapes`, `pos`, { index: i, value: v })}
-          lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
-          frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
-        />
-        <Form method="post" id="artwork-form">
-          <input type="hidden" name="title" value={title} />
-          <label>
-            Description
-            <textarea name="description" rows={6} />
-          </label>
-          <input type="hidden" name="darkMode" value={colorMode.darkMode} />
-          <input type="hidden" name="dropShadow" value={styling.dropShadow} />
-          <input type="hidden" name="gradient" value={styling.gradient} />
-          <input type="hidden" name="grain" value={styling.grain} />
-          <input type="hidden" name="values" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
-          <button className="button" type="submit">create</button>
-        </Form>
+        {!formVisible ? (
+          <>
+            <Inputs
+              title={title} onTitleChange={(v) => setTitle(v)}
+              colorMode={colorMode} onColorModeChange={handleColorModeChange}
+              styling={styling} onDropShadowChange={() => handleStylingChange("dropShadow")} onGradientChange={() => handleStylingChange("gradient")} onGrainChange={() => handleStylingChange("grain")}
+              shapes={shapes} onSizeChange={(v, i) => handleValueChange(`shapes`, `size`, { index: i, value: v })} onColorChange={(v, i) => handleValueChange(`shapes`, `color`, { index: i, value: v })} onRepositionChange={(v, i) => handleValueChange(`shapes`, `pos`, { index: i, value: v })}
+              lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
+              frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
+            />
+            <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
+          </>
+        ) : (
+          <Form method="post" id="artwork-form">
+            <label>
+              Title
+              <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            </label>
+            <label>
+              Description
+              <textarea name="description" rows={3} />
+            </label>
+            <input type="hidden" name="darkMode" value={colorMode.darkMode} />
+            <input type="hidden" name="dropShadow" value={styling.dropShadow} />
+            <input type="hidden" name="gradient" value={styling.gradient} />
+            <input type="hidden" name="grain" value={styling.grain} />
+            <input type="hidden" name="values" value={JSON.stringify({ shapes: shapes, lines: lines, linesPattern: linesPattern, frame: frame })} />
+            <div className="button__wrapper">
+              <button className="button" type="button" onClick={() => setFormVisible(false)}>cancel</button>
+              <button className="button button--primary" type="submit">create</button>
+            </div>
+          </Form>
+        )}
       </div>
-    </>
+    </main>
   )
 }
 

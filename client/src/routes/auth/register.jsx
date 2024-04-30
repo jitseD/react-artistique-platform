@@ -39,7 +39,7 @@ const Register = () => {
     let actionData = useActionData();
 
     return (
-        <section>
+        <main className="main--registor">
             <hgroup>
                 <h2>Sign up</h2>
                 <p>Get access to all the features</p>
@@ -77,7 +77,7 @@ const Register = () => {
                     </button>
                 </div>
             </Form>
-        </section>
+        </main>
     )
 }
 
