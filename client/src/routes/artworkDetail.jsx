@@ -28,7 +28,12 @@ const ArtworkDetail = () => {
                 }}
             />
             {artwork.creater.data && (
-                <p>Created by {artwork.creater.data.attributes.username} </p>
+                <div>
+                    <p>Created by</p>
+                    <Link to={`/user/${artwork.creater.data.id}`}>
+                        {artwork.creater.data.attributes.username}
+                    </Link>
+                </div>
             )}
             <Link to={`/artwork/edit/${artwork.id}`}>edit</Link>
         </>

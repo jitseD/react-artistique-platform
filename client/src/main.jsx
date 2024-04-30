@@ -3,13 +3,15 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import Login from './routes/auth/login';
+import User from './routes/auth/user';
+import Register from './routes/auth/register';
+
 import ArtworkGenerator from './routes/artworkGenerator';
 import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
 import Index from './routes/index';
-import Login from './routes/auth/login';
 import Root from './routes/root';
-import Register from './routes/auth/register';
 
 
 const router = createBrowserRouter([
@@ -50,6 +52,11 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
         action: Register.action,
+      },
+      {
+        path: "/user/:id",
+        element: <User />,
+        loader: User.loader,
       },
     ],
   },
