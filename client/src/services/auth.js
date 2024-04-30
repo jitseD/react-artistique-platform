@@ -32,3 +32,13 @@ export const setAuthData = (authData) => {
         localStorage.setItem(AUTH_DATA, JSON.stringify(authData));
     }
 };
+
+export const getAuthData = () => {
+    const authData = localStorage.getItem(AUTH_DATA);
+    return authData ? JSON.parse(authData) : {};
+}
+
+export const getToken = () => {
+    const authData = getAuthData();
+    return authData.jwt;
+};
