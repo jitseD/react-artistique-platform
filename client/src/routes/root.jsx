@@ -1,4 +1,11 @@
 import { Outlet, NavLink } from "react-router-dom";
+import AuthStatus from "../components/AuthStatus";
+import { getAuthData } from "../services/auth";
+
+const loader = async () => {
+    const data = getAuthData();
+    return data;
+};
 
 const Root = () => {
     return (
@@ -12,24 +19,7 @@ const Root = () => {
                         >
                             home
                         </NavLink>
-                        <NavLink
-                            to={`/artwork/generate`}
-                            className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-                        >
-                            create
-                        </NavLink>
-                        <NavLink
-                            to={`/login`}
-                            className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-                        >
-                            Login
-                        </NavLink>
-                        <NavLink
-                            to={`/signup`}
-                            className={({ isActive, isPending }) => isActive ? "active" : isPending ? "pending" : ""}
-                        >
-                            signup
-                        </NavLink>
+                        <AuthStatus />
                     </ul>
                 </nav>
             </header>
@@ -39,5 +29,7 @@ const Root = () => {
         </>
     );
 };
+
+Root.loader = loader;
 
 export default Root;

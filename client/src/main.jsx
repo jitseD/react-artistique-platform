@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       {
         path: "/artwork/generate",
         element: <ArtworkGenerator />,
+        loader: ArtworkGenerator.loader,
         action: ArtworkGenerator.action,
       },
       {

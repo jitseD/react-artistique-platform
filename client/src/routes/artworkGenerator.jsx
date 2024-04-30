@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Form, redirect } from "react-router-dom";
 import { canvas } from "../context/CanvasContext";
+import { getAuthData } from "../services/auth";
 import Canvas from "../components/Canvas";
 import Chip from "../components/Chip";
 import InputSection from "../components/InputSection";
@@ -12,6 +13,16 @@ import Toggle from "../components/Toggle";
 import '../styles/generator.css'
 
 import { createArtwork } from "../services/artworks";
+
+const loader = async ({ request }) => {
+  const { user } = getAuthData();
+  if (!user) {
+    let params = new URLSearchParams();
+    params.set("from", new URL(request.url).pathname);
+    return redirect("/login?" + params.toString());
+  }
+  return null;
+};
 
 const action = async ({ request }) => {
   const formData = await request.formData();
@@ -182,6 +193,7 @@ const App = () => {
   )
 }
 
+App.loader = loader;
 App.action = action;
 
 export default App

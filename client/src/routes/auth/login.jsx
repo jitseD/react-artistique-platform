@@ -1,4 +1,4 @@
-import { Form, redirect, useNavigation, useActionData } from "react-router-dom";
+import { Form, redirect, useNavigation, useActionData, useLocation } from "react-router-dom";
 import { authenticate } from "../../services/auth";
 import ErrorField from "../../components/ErrorField";
 
@@ -16,15 +16,17 @@ const action = async ({ request }) => {
             error: { general: error.message },
         };
     }
-    // let redirectTo = formData.get("redirectTo") | null;
-    // return redirect(redirectTo || "/");
-    return redirect("/");
+    let redirectTo = formData.get("redirectTo") | null;
+    console.log(redirectTo);
+    return redirect(redirectTo || "/");
 };
 
 const Login = () => {
-    // let location = useLocation();
-    // let params = new URLSearchParams(location.search);
-    // let from = params.get("from") || "/";
+    let location = useLocation();
+    let params = new URLSearchParams(location.search);
+    let from = params.get("from") || "/";
+
+    console.log(from);
 
     let navigation = useNavigation();
     let isLoggingIn = navigation.formData?.get("email") != null;
@@ -38,7 +40,7 @@ const Login = () => {
                 <p>Get access to all the features</p>
             </hgroup>
             <Form method="post">
-                {/* <input type="hidden" name="redirectTo" value={from} /> */}
+                <input type="hidden" name="redirectTo" value={from} />
                 <div>
                     <label htmlFor="email">Email</label>
                     <input
