@@ -39,44 +39,35 @@ const Register = () => {
     let actionData = useActionData();
 
     return (
-        <main className="main--registor">
-            <hgroup>
+        <main className="main--register">
+            <div className="register__title">
                 <h2>Sign up</h2>
                 <p>Get access to all the features</p>
-            </hgroup>
-            <Form method="post">
-                <input type="hidden" name="redirectTo" value={from} />
-                <div>
-                    <label htmlFor="email">Username</label>
-                    <input
-                        id="username" name="username" type="text"
-                        placeholder="username" autoComplete="username"
-                    />
-                    <ErrorField data={actionData} field="username" />
-                </div>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email" name="email" type="email"
-                        placeholder="e-mail" autoComplete="email"
-                    />
-                    <ErrorField data={actionData} field="email" />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password" name="password" type="password"
-                        placeholder="password" autoComplete="current-password"
-                    />
-                    <ErrorField data={actionData} field="password" />
-                </div>
-                <div>
+            </div>
+            <div className="register__form--wrapper">
+                <Form method="post" className="register__form">
+                    <input type="hidden" name="redirectTo" value={from} />
+                    <div className="input__wrapper">
+                        <label htmlFor="email">Username</label>
+                        <input id="username" name="username" type="text" autoComplete="username" />
+                        <ErrorField data={actionData} field="username" />
+                    </div>
+                    <div className="input__wrapper">
+                        <label htmlFor="email">Email</label>
+                        <input id="email" name="email" type="email" autoComplete="email" />
+                        <ErrorField data={actionData} field="email" />
+                    </div>
+                    <div className="input__wrapper">
+                        <label htmlFor="password">Password</label>
+                        <input id="password" name="password" type="password" autoComplete="current-password" />
+                        <ErrorField data={actionData} field="password" />
+                    </div>
                     <ErrorField data={actionData} field="general" />
                     <button type="submit" disabled={isLoggingIn} >
                         {isLoggingIn ? "Sending..." : "Sign up"}
                     </button>
-                </div>
-            </Form>
+                </Form>
+            </div>
         </main>
     )
 }

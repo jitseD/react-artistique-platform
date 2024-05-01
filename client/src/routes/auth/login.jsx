@@ -31,36 +31,28 @@ const Login = () => {
 
     return (
         <main className="main--login">
-            <hgroup>
+            <div className="login__title">
                 <h2>Log in</h2>
                 <p>Get access to all the features</p>
-            </hgroup>
-            <Form method="post">
-                <input type="hidden" name="redirectTo" value={from} />
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email" name="email" type="email"
-                        placeholder="e-mail" autoComplete="email"
-                        defaultValue="tester@devine.be"
-                    />
-                    <ErrorField data={actionData} field="email" />
-                </div>
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password" name="password" type="password"
-                        placeholder="Password" autoComplete="current-password"
-                        defaultValue="tester"
-                    />
-                    <ErrorField data={actionData} field="password" />
-                </div>
-                <div>
+            </div>
+            <div className="login__form--wrapper">
+                <Form method="post" className="login__form">
+                    <input type="hidden" name="redirectTo" value={from} />
+                    <div className="input__wrapper">
+                        <label htmlFor="email">Email</label>
+                        <input id="email" name="email" type="email" autoComplete="email" defaultValue="tester@devine.be" />
+                        <ErrorField data={actionData} field="email" />
+                    </div>
+                    <div className="input__wrapper">
+                        <label htmlFor="password">Password</label>
+                        <input id="password" name="password" type="password" autoComplete="current-password" defaultValue="tester" />
+                        <ErrorField data={actionData} field="password" />
+                    </div>
                     <button type="submit" disabled={isLoggingIn} >
                         {isLoggingIn ? "Logging in..." : "Login"}
                     </button>
-                </div>
-            </Form>
+                </Form>
+            </div>
         </main>
     );
 };

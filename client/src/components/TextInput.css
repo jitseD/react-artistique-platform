@@ -1,4 +1,6 @@
 input[type="text"],
+input[type="email"],
+input[type="password"],
 input[type="search"] {
     appearance: none;
     outline: none;
@@ -12,11 +14,15 @@ input[type="search"] {
 }
 
 input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
 input[type="search"]::placeholder {
     text-transform: capitalize;
 }
 
-input[type="search"]:focus,
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus {
     border-bottom-width: 3px;
 }

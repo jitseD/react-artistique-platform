@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Outlet } from "react-router-dom";
-import AuthStatus from "../components/AuthStatus";
+import NavBar from "../components/NavBar";
 import { getAuthData } from "../services/auth";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 
@@ -22,14 +22,14 @@ const Root = () => {
                     <div className="hamburger__wrapper" >
                         <RxCross2 />
                     </div>
-                    <AuthStatus />
+                    <NavBar />
                 </header>
             ) : (
                 <header className="nav--invisible" >
                     <div className="hamburger__wrapper" onMouseEnter={() => setNavigationVisible(true)} >
                         <RxHamburgerMenu />
                     </div>
-                    <AuthStatus />
+                    <NavBar />
                 </header>
             )}
 

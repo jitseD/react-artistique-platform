@@ -1,7 +1,7 @@
 import { useRouteLoaderData, NavLink, useFetcher } from "react-router-dom";
 
 
-const AuthStatus = () => {
+const NavBar = () => {
     let { user } = useRouteLoaderData("root");
     const fetcher = useFetcher();
     let isLoggingOut = fetcher.formData != null;
@@ -35,4 +35,4 @@ const AuthStatus = () => {
     );
 };
 
-export default AuthStatus;
+export default NavBar;
