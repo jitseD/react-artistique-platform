@@ -60,3 +60,12 @@ button:active,
     background-color: var(--c-black);
     color: var(--c-white);
 }
+
+.profile__button {
+    width: 9.5rem;
+    display: grid;
+    place-items: center;
+    background-color: var(--c-black);
+    border-color: var(--c-black);
+    color: var(--c-white);
+}

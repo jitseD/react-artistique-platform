@@ -24,7 +24,7 @@
     grid-column: 1;
     grid-row: 1;
     display: grid;
-    grid-template-columns: repeat(3, 5rem);
+    grid-template-columns: repeat(3, 5.5rem);
     align-items: center;
 }
 
@@ -38,8 +38,14 @@
 }
 
 .collection__artworks .canvas:nth-child(2) {
+    border-width: 1.75px;
     z-index: 10;
     width: 7rem;
+}
+
+.collection__artworks .canvas:nth-child(3) {
+    border-width: 1.5px;
+    width: 6rem;
 }
 
 .collection__artworks--empty {

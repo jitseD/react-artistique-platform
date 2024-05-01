@@ -4,7 +4,7 @@ import { getToken } from "./auth";
 const getArtworks = async (searchTerm) => {
     const query = {
         sort: ["createdAt", "title", "description"],
-        populate: ["creator"]
+        populate: ["creator"],
     };
 
     if (searchTerm && searchTerm.trim() !== "") {

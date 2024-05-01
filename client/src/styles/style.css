@@ -384,12 +384,15 @@ textarea:focus {
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr;
     padding: 5rem;
+    gap: 5rem;
 }
 
 .artworks__wrapper {
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    padding-bottom: 5rem;
 }
 
 .main--profile .artworks,
@@ -441,12 +444,6 @@ textarea:focus {
     height: 100%;
 }
 
-.profile__button {
-    width: 9.5rem;
-    display: grid;
-    place-items: center;
-}
-
 .profile__button--wrapper {
     display: flex;
     flex-direction: row;
@@ -457,7 +454,26 @@ textarea:focus {
 
 .collections {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 4rem;
     width: 100%;
+}
+
+.collection__details {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    width: 100%;
+}
+
+.collection__details .button--detail {
+    height: max-content;
+    align-self: center;
+}
+
+.artworks--collection {
+    height: 100%;
+}
+
+.artworks--collection .artwork__card {
+    height: max-content;
 }

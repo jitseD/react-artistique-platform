@@ -28,7 +28,7 @@ const CollectionCard = ({ collection, showCreator, titleShort, creator }) => {
             </div>
             <div className="collection__artworks">
                 {collection.artworks && collection.artworks.data.length > 0 ? (
-                    collection.artworks.data.map((artwork) => (
+                    collection.artworks.data.slice(0, 3).map((artwork) => (
                         <Canvas
                             key={artwork.id}
                             id={artwork.id}
@@ -46,10 +46,10 @@ const CollectionCard = ({ collection, showCreator, titleShort, creator }) => {
                         />
                     ))
                 ) : (
-                        <p className="collection__artworks--empty">this collection has no artworks</p>
-                )
-                }
+                    <p className="collection__artworks--empty">this collection has no artworks</p>
+                )}
             </div>
+
 
         </Link>
     )

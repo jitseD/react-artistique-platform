@@ -20,14 +20,16 @@ const getCollections = async (searchTerm) => {
     return collections.map(unwrapAtributes);
 }
 
-// const getCollectionById = async (id) => {
-//     const collection = await fetchApi({
-//         endpoint: `collections/${id}`,
-//         query: { populate: ["creator"] },
-//         wrappedByKey: "data"
-//     });
-//     return unwrapAtributes(collection);
-// };
+const getCollectionById = async (id) => {
+    const collection = await fetchApi({
+        endpoint: `collections/${id}`,
+        query: {
+            populate: ['creator', 'artworks'],
+        },
+        wrappedByKey: "data"
+    });
+    return unwrapAtributes(collection);
+};
 
 // const createCollection = async (data) => {
 //     const collection = await fetchApi(
@@ -63,4 +65,4 @@ const getCollections = async (searchTerm) => {
 //     return unwrapAtributes(collection);
 // };
 
-export { getCollections };
+export { getCollections, getCollectionById };
