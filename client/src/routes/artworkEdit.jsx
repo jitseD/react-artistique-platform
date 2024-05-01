@@ -11,7 +11,7 @@ const loader = async ({ params }) => {
     if (!user) {
         return redirect(`/artwork/detail/${params.id}`);
     }
-    if (user.id != artwork.creater.data.id) {
+    if (user.id != artwork.creator.data.id) {
         return redirect(`/artwork/detail/${params.id}`);
     }
     return { artwork };

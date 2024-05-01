@@ -9,18 +9,8 @@ const AuthStatus = () => {
     return user ? (
         <nav className="nav__bar">
             <div className="nav__links">
-                <NavLink
-                    to={`/`}
-                    className={`nav__link`}
-                >
-                    artworks
-                </NavLink>
-                <NavLink
-                    to="/artwork/generate"
-                    className="nav__link"
-                >
-                    create
-                </NavLink>
+                <NavLink to={`/`} className={`nav__link`} >artworks</NavLink>
+                <NavLink to="/artwork/generate" className="nav__link" >create</NavLink>
             </div>
 
             <div className="nav__buttons">
@@ -34,26 +24,12 @@ const AuthStatus = () => {
     ) : (
         <nav className="nav__bar">
             <div className="nav__links">
-                <NavLink
-                    to={`/`}
-                    className={`nav__link`}
-                >
-                    artworks
-                </NavLink>
+                <NavLink to={`/`} className={`nav__link`} >artworks</NavLink>
+                <NavLink to="/artwork/generate" className="nav__link" >generate</NavLink>
             </div>
             <div className="nav__buttons">
-                <NavLink
-                    to={`/login`}
-                    className="nav__link button nav__button nav__button--primary"
-                >
-                    login
-                </NavLink>
-                <NavLink
-                    to={`/register`}
-                    className="nav__link button nav__button nav__button--primary"
-                >
-                    register
-                </NavLink>
+                <NavLink to={`/login`} className="nav__link button nav__button nav__button--primary" >login</NavLink>
+                <NavLink to={`/register`} className="nav__link button nav__button nav__button--primary" >register</NavLink>
             </div>
         </nav>
     );

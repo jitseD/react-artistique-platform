@@ -1,7 +1,7 @@
 import { useEffect } from "react"
-import { useLoaderData, Link, Form, useNavigation, useSubmit } from "react-router-dom"
+import { useLoaderData, Form, useNavigation, useSubmit } from "react-router-dom"
 import { getArtworks } from "../services/artworks";
-import Canvas from "../components/Canvas";
+import ArtworkCard from "../components/ArtworkCard";
 
 const loader = async ({ request }) => {
     const url = new URL(request.url);
@@ -14,6 +14,8 @@ const Index = () => {
     const { artworks, q } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
+
+    console.log(artworks);
 
     const searching =
         navigation.location &&
@@ -39,30 +41,11 @@ const Index = () => {
                 />
                 <div id="search-spinner" aria-hidden hidden={!searching} />
             </Form>
-            <ul className="artworks">
+            <div className="artworks">
                 {artworks.map((artwork) => (
-                    <li key={artwork.id}>
-                        <Link to={`/artwork/detail/${artwork.id}`}>
-                            <p>{artwork.title}</p>
-                            {artwork.description && <p>{artwork.description}</p>}
-                            <Canvas
-                                id={artwork.id}
-                                frame={artwork.values.frame}
-                                linesPattern={artwork.values.linesPattern}
-                                lines={artwork.values.lines}
-                                shapes={artwork.values.shapes}
-                                title={artwork.title}
-                                colorMode={{ darkMode: artwork.darkMode, foreground: artwork.darkMode ? "#F2F2E6" : "#0D0D0C", background: artwork.darkMode ? "#0D0D0C" : "#F2F2E6" }}
-                                styling={{
-                                    dropShadow: artwork.dropShadow,
-                                    gradient: artwork.gradient,
-                                    grain: artwork.grain
-                                }}
-                            />
-                        </Link>
-                    </li>
+                    <ArtworkCard key={artwork.id} artwork={artwork} creator={true} />
                 ))}
-            </ul>
+            </div>
         </main>
     )
 }

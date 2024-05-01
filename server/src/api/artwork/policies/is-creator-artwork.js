@@ -14,20 +14,20 @@ module.exports = async (policyContext, config, { strapi }) => {
   /**
     Queries the Cheeses collection type
     using the Entity Service API
-    to retrieve information about the artworks's creater.
+    to retrieve information about the artworks's creator.
    */
   const [artwork] = await strapi.entityService.findMany("api::artwork.artwork", {
     filters: {
       id: params.id,
     },
-    populate: ["creater"],
+    populate: ["creator"],
   });
   console.log("artwork found", artwork);
   if (!artwork) {
     return false;
   }
 
-  if (user.id != artwork?.creater?.id) {
+  if (user.id != artwork?.creator?.id) {
     /**
       Throws a custom policy error
       instead of just returning false
@@ -35,13 +35,13 @@ module.exports = async (policyContext, config, { strapi }) => {
      */
     console.log("policy error");
     const error = new ApplicationError(
-      "Only the creater of the artwork can perform this action.",
+      "Only the creator of the artwork can perform this action.",
       {
-        policy: "is-creater-artwork",
-        errCode: "ARTWORK_CREATER",
+        policy: "is-creator-artwork",
+        errCode: "ARTWORK_CREATOR",
       }
     );
-    error.name = "CreaterArtworkError";
+    error.name = "CreatorArtworkError";
     throw error;
   }
 

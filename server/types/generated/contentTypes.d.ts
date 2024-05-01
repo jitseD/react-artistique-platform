@@ -387,7 +387,7 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
     grain: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
     description: Attribute.Text;
     values: Attribute.JSON;
-    creater: Attribute.Relation<
+    creator: Attribute.Relation<
       'api::artwork.artwork',
       'manyToOne',
       'plugin::users-permissions.user'

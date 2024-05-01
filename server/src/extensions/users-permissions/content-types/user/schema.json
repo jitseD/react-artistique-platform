@@ -70,7 +70,7 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::artwork.artwork",
-      "mappedBy": "creater"
+      "mappedBy": "creator"
     }
   }
 }

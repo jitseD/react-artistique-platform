@@ -1,9 +1,10 @@
 import { fetchApi, unwrapAtributes } from "./strapi";
 import { getToken } from "./auth";
 
-const getArtworks = async (searchTerm, darkModeFilter) => {
+const getArtworks = async (searchTerm) => {
     const query = {
         sort: ["title", "description", "createdAt"],
+        populate: ["creator"]
     };
 
     if (searchTerm && searchTerm.trim() !== "") {
@@ -15,14 +16,7 @@ const getArtworks = async (searchTerm, darkModeFilter) => {
         };
     }
 
-    if (darkModeFilter !== undefined) {
-        query.filters = {
-            ...query.filters,
-            darkMode: darkModeFilter,
-        };
-    }
-
-    const artworks = await fetchApi({ endpoint: "artworks", wrappedByKey: "data", query });
+    const artworks = await fetchApi({ endpoint: "artworks", query, wrappedByKey: "data", });
     if (!artworks) return [];
     return artworks.map(unwrapAtributes);
 }
@@ -30,7 +24,7 @@ const getArtworks = async (searchTerm, darkModeFilter) => {
 const getArtworkById = async (id) => {
     const artwork = await fetchApi({
         endpoint: `artworks/${id}`,
-        query: { populate: ["creater"] },
+        query: { populate: ["creator"] },
         wrappedByKey: "data"
     });
     return unwrapAtributes(artwork);

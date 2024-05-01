@@ -42,7 +42,7 @@
     "values": {
       "type": "json"
     },
-    "creater": {
+    "creator": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",

@@ -37,6 +37,7 @@ body,
 
 h1,
 h2,
+h3,
 p,
 button,
 input,
@@ -44,6 +45,12 @@ label,
 textarea {
     font-family: sans-serif;
     color: var(--c-black);
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 
 
@@ -155,8 +162,8 @@ header {
     gap: 5rem;
 }
 
-.main--index svg {
-    border: var(--c-fg) 1px solid;
+.main--index .canvas {
+    border: var(--c-black) 1px solid;
 }
 
 .filters {
@@ -172,9 +179,10 @@ header {
 
 .artworks {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
 }
+
 
 /* ----- form ----- */
 

@@ -19,7 +19,7 @@ main {
     font-size: clamp(3.5832rem, 2.9636rem + 3.0978vi, 5.3644rem);
     text-transform: capitalize;
     font-weight: 900;
-    color: #F2F2E6;
+    color: var(--c-white);
     mix-blend-mode: difference;
     rotate: -90deg;
     position: fixed;
@@ -27,8 +27,8 @@ main {
 }
 
 .title::selection {
-    background-color: #F2F2E6;
-    color: #0D0D0C;
+    background-color: var(--c-white);
+    color: var(--c-black);
 }
 
 .frame {

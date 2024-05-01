@@ -1,4 +1,4 @@
 .canvas-text {
     font-size: 20px;
-    fill: #0D0D0C;
+    fill: var(--c-black);
 }

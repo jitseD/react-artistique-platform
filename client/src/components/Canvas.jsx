@@ -9,7 +9,7 @@ const Canvas = ({ id, frame, linesPattern, lines, shapes, title, colorMode, styl
     const canvasContext = useContext(canvas);
 
     return (
-            <svg viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
+            <svg className="canvas" viewBox={`0 0 ${canvasContext.width} ${canvasContext.height}`}>
                 <defs>
                     <filter id="noise">
                         <feTurbulence type="fractalNoise" baseFrequency="200" numOctaves="100" result="turbulence" />

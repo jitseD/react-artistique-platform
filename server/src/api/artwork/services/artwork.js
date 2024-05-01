@@ -14,7 +14,7 @@ module.exports = createCoreService("api::artwork.artwork", ({ strapi }) => ({
     const newArtwork = await strapi.entityService.create("api::artwork.artwork", {
       data: {
         ...body.data,
-        creater: {
+        creator: {
           set: [user.id],
         },
       },

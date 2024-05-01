@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useLoaderData } from "react-router-dom";
 import { canvas } from "../context/CanvasContext";
 import { getAuthData } from "../services/auth";
 import Canvas from "../components/Canvas";
@@ -8,14 +8,18 @@ import '../styles/generator.css'
 
 import { createArtwork } from "../services/artworks";
 
-const loader = async ({ request }) => {
+const loader = async () => {
   const { user } = getAuthData();
+  let loggedIn;
   if (!user) {
-    let params = new URLSearchParams();
-    params.set("from", new URL(request.url).pathname);
-    return redirect("/login?" + params.toString());
+    loggedIn = false;
+    // let params = new URLSearchParams();
+    // params.set("from", new URL(request.url).pathname);
+    // return redirect("/login?" + params.toString());
+    return { loggedIn }
   }
-  return null;
+  loggedIn = true
+  return { loggedIn };
 };
 
 const action = async ({ request }) => {
@@ -119,6 +123,7 @@ const App = () => {
     }
   }
 
+  const { loggedIn } = useLoaderData();
   const [formVisible, setFormVisible] = useState(false);
 
   return (
@@ -146,7 +151,9 @@ const App = () => {
               lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
               frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
             />
-            <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
+            {loggedIn &&
+              <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
+            }
           </>
         ) : (
           <Form method="post" id="artwork-form">

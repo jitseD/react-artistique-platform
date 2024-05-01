@@ -26,11 +26,11 @@ const ArtworkDetail = () => {
             </div>
             <div className="details">
                 {artwork.description && <p>{artwork.description}</p>}
-                {artwork.creater.data && (
+                {artwork.creator.data && (
                     <div>
                         <p>Created by</p>
-                        <Link to={`/user/${artwork.creater.data.id}`}>
-                            {artwork.creater.data.attributes.username}
+                        <Link to={`/user/${artwork.creator.data.id}`}>
+                            {artwork.creator.data.attributes.username}
                         </Link>
                     </div>
                 )}
