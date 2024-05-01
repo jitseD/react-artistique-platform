@@ -12,7 +12,8 @@ import Register from './routes/auth/register';
 import ArtworkGenerator from './routes/artworkGenerator';
 import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
-import Index from './routes/index';
+import Artworks from './routes/artworks';
+import Collections from './routes/collections';
 import Root from './routes/root';
 import User from './routes/user';
 
@@ -25,8 +26,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index />,
-        loader: Index.loader,
+        element: <Artworks />,
+        loader: Artworks.loader,
       },
       {
         path: "/artwork/generate",
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
         element: <ArtworkEdit />,
         action: ArtworkEdit.action,
         loader: ArtworkEdit.loader,
+      },
+      {
+        path: "/collections",
+        element: <Collections />,
+        action: Collections.action,
+        loader: Collections.loader,
       },
       {
         path: "/login",

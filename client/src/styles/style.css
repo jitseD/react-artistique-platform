@@ -145,14 +145,15 @@ header {
 
 /* ----- index ----- */
 
-.main--index {
+.main--artworks,
+.main--collections {
     display: flex;
     flex-direction: column;
     padding: 3rem 10rem;
     gap: 5rem;
 }
 
-.main--index .canvas {
+.main--artworks .canvas {
     border: var(--c-black) 1px solid;
 }
 
@@ -450,4 +451,13 @@ textarea:focus {
     display: flex;
     flex-direction: row;
     gap: 0.5rem;
+}
+
+/* ----- collections ----- */
+
+.collections {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    width: 100%;
 }

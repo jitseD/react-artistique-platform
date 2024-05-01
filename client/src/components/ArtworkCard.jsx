@@ -17,10 +17,10 @@ const ArtworkCard = ({ artwork, showCreator, titleShort, creator }) => {
                     </div>
                 ) : (
                     artwork.creator.data && (
-                        <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
+                        <div className="artwork__creator">
                             <RxPerson className="icon" />
                             <p>{artwork.creator.data.attributes.username}</p>
-                        </Link>
+                        </div>
                     )
                 )
                 }

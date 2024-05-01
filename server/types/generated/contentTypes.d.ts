@@ -392,6 +392,11 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    collections: Attribute.Relation<
+      'api::artwork.artwork',
+      'manyToMany',
+      'api::collection.collection'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -402,6 +407,46 @@ export interface ApiArtworkArtwork extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::artwork.artwork',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCollectionCollection extends Schema.CollectionType {
+  collectionName: 'collections';
+  info: {
+    singularName: 'collection';
+    pluralName: 'collections';
+    displayName: 'Collection';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    creator: Attribute.Relation<
+      'api::collection.collection',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    artworks: Attribute.Relation<
+      'api::collection.collection',
+      'manyToMany',
+      'api::artwork.artwork'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::collection.collection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::collection.collection',
       'oneToOne',
       'admin::user'
     > &
@@ -776,6 +821,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::artwork.artwork'
     >;
+    collections: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::collection.collection'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -851,6 +901,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'api::artwork.artwork': ApiArtworkArtwork;
+      'api::collection.collection': ApiCollectionCollection;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;

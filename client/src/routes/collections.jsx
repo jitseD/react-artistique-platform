@@ -1,24 +1,24 @@
 import { useEffect } from "react"
 import { useLoaderData, Form, useNavigation, useSubmit } from "react-router-dom"
-import { getArtworks } from "../services/artworks";
+import { getCollections } from "../services/collections";
 import { getAuthData } from "../services/auth";
-import ArtworkCard from "../components/ArtworkCard";
+import CollectionCard from "../components/CollectionCard";
 
 const loader = async ({ request }) => {
     const url = new URL(request.url);
     const q = url.searchParams.get("q")
-    const artworks = await getArtworks(q);
+    const collections = await getCollections(q);
 
     const creator = getAuthData().user;
-    return { artworks, q, creator };
+    return { collections, creator , q};
 }
 
-const Index = () => {
-    const { artworks, q , creator} = useLoaderData();
+const Collections = () => {
+    const { collections,q, creator } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
 
-    console.log(artworks);
+    console.log(collections);
 
     const searching =
         navigation.location &&
@@ -29,7 +29,7 @@ const Index = () => {
     }, [q]);
 
     return (
-        <main className="main--index">
+        <main className="main--collections">
             <Form className="filters" id="search-form" role="search">
                 <input
                     id="q" type="search" name="q"
@@ -44,15 +44,15 @@ const Index = () => {
                 />
                 <div id="search-spinner" aria-hidden hidden={!searching} />
             </Form>
-            <div className="artworks">
-                {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} creator={creator} showCreator={true} titleShort={true}/>
+            <div className="collections">
+                {collections.map((collection) => (
+                    <CollectionCard key={collection.id} collection={collection} creator={creator} showCreator={true} titleShort={true}/>
                 ))}
             </div>
         </main>
     )
 }
 
-Index.loader = loader;
+Collections.loader = loader;
 
-export default Index;
+export default Collections;
