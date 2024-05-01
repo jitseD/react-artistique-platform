@@ -1,3 +1,5 @@
+import qs from "qs";
+
 const fetchApi = async ({
     endpoint,
     query = undefined,
@@ -8,13 +10,7 @@ const fetchApi = async ({
         endpoint = endpoint.slice(1);
     }
 
-    const url = new URL(`${import.meta.env.VITE_STRAPI_URL}/api/${endpoint}`);
-
-    if (query) {
-        Object.entries(query).forEach(([key, value]) => {
-            url.searchParams.append(key, value);
-        });
-    }
+    const url = new URL(`${import.meta.env.VITE_STRAPI_URL}/api/${endpoint}${query ? `?${qs.stringify(query, { encode: false })}` : ``}`);
 
     console.log("Fetching...", url.toString());
 

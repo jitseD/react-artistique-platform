@@ -9,7 +9,8 @@
 }
 
 .main--generator .chip--active,
-.main--edit .chip--active {
+.main--edit .chip--active,
+.main--index .chip--active {
     background-color: var(--c-fg);
     color: var(--c-bg);
 }

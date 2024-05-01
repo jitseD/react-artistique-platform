@@ -18,17 +18,18 @@ const Root = () => {
     return (
         <>
             {naviationVisble ? (
-                <header onMouseLeave={() => setNavigationVisible(false)}>
-                    <div className="hamburger__wrapper" onClick={() => setNavigationVisible(false)}>
+                <header onMouseLeave={() => setNavigationVisible(false)} >
+                    <div className="hamburger__wrapper" >
                         <RxCross2 />
                     </div>
                     <AuthStatus />
                 </header>
             ) : (
-                <header onMouseEnter={() => setNavigationVisible(true)}>
-                    <div className="hamburger__wrapper" onMouseEnter={() => setNavigationVisible(true)} onClick={() => setNavigationVisible(true)}>
+                <header className="nav--invisible" >
+                    <div className="hamburger__wrapper" onMouseEnter={() => setNavigationVisible(true)} >
                         <RxHamburgerMenu />
                     </div>
+                    <AuthStatus />
                 </header>
             )}
 

@@ -1,19 +1,22 @@
-input[type="text"] {
+input[type="text"],
+input[type="search"] {
     appearance: none;
     outline: none;
     border: none;
     resize: none;
     width: 100%;
     border-bottom: 2px solid var(--c-fg);
-    background-color: var(--c-bg);
+    background-color: unset;
     font-size: 1.5rem;
-    transition: background-color 0.25s, border-bottom 0.25s;
+    transition: border-bottom 0.25s;
 }
 
-input[type="text"]::placeholder{
+input[type="text"]::placeholder,
+input[type="search"]::placeholder {
     text-transform: capitalize;
 }
 
+input[type="search"]:focus,
 input[type="text"]:focus {
     border-bottom-width: 3px;
 }

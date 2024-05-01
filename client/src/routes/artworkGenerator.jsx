@@ -4,13 +4,6 @@ import { canvas } from "../context/CanvasContext";
 import { getAuthData } from "../services/auth";
 import Canvas from "../components/Canvas";
 import Inputs from "../components/Inputs";
-// import Chip from "../components/Chip";
-// import InputSection from "../components/InputSection";
-// import Slider from "../components/Slider";
-// import SliderWrapper from "../components/SliderWrapper";
-// import ShapeSection from "../components/ShapeSection";
-// import TextInput from "../components/TextInput";
-// import Toggle from "../components/Toggle";
 import '../styles/generator.css'
 
 import { createArtwork } from "../services/artworks";

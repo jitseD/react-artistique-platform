@@ -1,8 +1,28 @@
 import { fetchApi, unwrapAtributes } from "./strapi";
 import { getToken } from "./auth";
 
-const getArtworks = async () => {
-    const artworks = await fetchApi({ endpoint: "artworks", wrappedByKey: "data" });
+const getArtworks = async (searchTerm, darkModeFilter) => {
+    const query = {
+        sort: ["title", "description", "createdAt"],
+    };
+
+    if (searchTerm && searchTerm.trim() !== "") {
+        query.filters = {
+            $or: [
+                { title: { $containsi: searchTerm } },
+                { description: { $containsi: searchTerm } },
+            ],
+        };
+    }
+
+    if (darkModeFilter !== undefined) {
+        query.filters = {
+            ...query.filters,
+            darkMode: darkModeFilter,
+        };
+    }
+
+    const artworks = await fetchApi({ endpoint: "artworks", wrappedByKey: "data", query });
     if (!artworks) return [];
     return artworks.map(unwrapAtributes);
 }

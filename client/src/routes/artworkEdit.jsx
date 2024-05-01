@@ -35,7 +35,7 @@ const ArtworkEdit = () => {
     const [lines, setLines] = useState(artwork.values.lines);
     const [linesPattern] = useState(artwork.values.linesPattern);
     const [shapes, setShapes] = useState(artwork.values.shapes);
-
+    
     document.documentElement.style.setProperty('--c-fg', colorMode.foreground);
     document.documentElement.style.setProperty('--c-bg', colorMode.background);
 

@@ -1,3 +1,6 @@
+.main--generator,
+.main--detail,
+.main--edit,
 main {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -57,25 +60,24 @@ main {
     transition: background-color 0.25s;
 }
 
-.main--generator h1,
 .main--generator h2,
 .main--generator p,
 .main--generator button,
 .main--generator input,
 .main--generator label,
-.main--generator textarea .main--detail h1,
+.main--generator textarea,
 .main--detail h2,
 .main--detail p,
 .main--detail button,
 .main--detail input,
 .main--detail label,
-.main--detail textarea .main--edit h1,
+.main--detail textarea,
 .main--edit h2,
 .main--edit p,
 .main--edit button,
 .main--edit input,
 .main--edit label,
-.main--edit textarea {
+.main--edit textarea{
     color: var(--c-fg);
     transition: color 0.25s;
 }

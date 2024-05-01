@@ -48,14 +48,20 @@ textarea {
 
 
 /* ----- navigation ----- */
+
 header {
     display: grid;
-    grid-template-columns: 1fr, min-content;
+    grid-template-columns: 1fr min-content;
     position: fixed;
     right: 0;
     top: 0;
     height: 100%;
     z-index: 100;
+    transition: right 0.25s;
+}
+
+.nav--invisible {
+    right: -20rem;
 }
 
 .hamburger__wrapper {
@@ -113,6 +119,9 @@ header {
 
 .active {
     font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
 }
 
 .nav__button {
@@ -136,6 +145,36 @@ header {
     color: var(--c-white);
 }
 
+
+/* ----- index ----- */
+
+.main--index {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 10rem;
+    gap: 5rem;
+}
+
+.main--index svg {
+    border: var(--c-fg) 1px solid;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.filters input[type="search"] {
+    width: 50%;
+}
+
+.artworks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+}
 
 /* ----- form ----- */
 
