@@ -4,16 +4,25 @@ import { Link } from "react-router-dom";
 import { RxPerson } from "react-icons/rx";
 import Canvas from "./Canvas";
 
-const ArtworkCard = ({ artwork, creator }) => {
+const ArtworkCard = ({ artwork, showCreator, titleShort, creator }) => {
     return (
         <Link to={`/artwork/detail/${artwork.id}`} className={`artwork__card artwork__card--${artwork.darkMode ? `dark` : `light`}`}>
             <div className="artwork__info">
-                <h3 className="artwork__title--short">{artwork.title}</h3>
-                {creator &&
-                    <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
+                <h3 className={`artwork__title ${titleShort && `artwork__title--short`}`}>{artwork.title}</h3>
+                {showCreator &&
+                    creator.id == artwork.creator.data.id ? (
+                    <div className="artwork__creator">
                         <RxPerson className="icon" />
-                        <p>{artwork.creator.data.attributes.username}</p>
-                    </Link>
+                        <p>by you</p>
+                    </div>
+                ) : (
+                    artwork.creator.data && (
+                        <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
+                            <RxPerson className="icon" />
+                            <p>{artwork.creator.data.attributes.username}</p>
+                        </Link>
+                    )
+                )
                 }
                 {artwork.description && <p className="artwork__description--short">{artwork.description}</p>}
             </div>
@@ -38,7 +47,9 @@ const ArtworkCard = ({ artwork, creator }) => {
 
 ArtworkCard.propTypes = {
     artwork: PropTypes.object.isRequired,
-    creator: PropTypes.bool.isRequired,
+    showCreator: PropTypes.bool.isRequired,
+    creator: PropTypes.object,
+    titleShort: PropTypes.bool.isRequired,
 };
 
 export default ArtworkCard;

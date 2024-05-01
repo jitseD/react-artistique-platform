@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Form, redirect, useLoaderData } from "react-router-dom";
+import { Form, redirect, useLoaderData, Link } from "react-router-dom";
 import { getArtworkById, editArtwork } from "../services/artworks";
 import { getAuthData } from "../services/auth";
 import Inputs from "../components/Inputs";
@@ -35,7 +35,7 @@ const ArtworkEdit = () => {
     const [lines, setLines] = useState(artwork.values.lines);
     const [linesPattern] = useState(artwork.values.linesPattern);
     const [shapes, setShapes] = useState(artwork.values.shapes);
-    
+
     document.documentElement.style.setProperty('--c-fg', colorMode.foreground);
     document.documentElement.style.setProperty('--c-bg', colorMode.background);
 
@@ -98,7 +98,10 @@ const ArtworkEdit = () => {
                             lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
                             frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
                         />
-                        <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >update</button>
+                        <div className="button__wrapper">
+                            <Link className="button" to={`/artwork/detail/${artwork.id}`}>cancel</Link>
+                            <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >update</button>
+                        </div>
                     </>
                 ) : (
                     <Form method="post" id="artwork-form">

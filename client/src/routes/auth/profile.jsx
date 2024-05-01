@@ -1,7 +1,8 @@
-import { redirect, useLoaderData } from "react-router-dom";
+import { redirect, useLoaderData, Link } from "react-router-dom";
 import { getAuthData } from "../../services/auth";
 import { getUserById } from "../../services/user";
 import ArtworkCard from "../../components/ArtworkCard";
+import { RxPlus, RxPerson } from "react-icons/rx";
 
 const loader = async ({ params }) => {
     const loggedInUser = getAuthData().user;
@@ -17,26 +18,45 @@ const loader = async ({ params }) => {
 const Profile = () => {
     const { user } = useLoaderData();
 
+    const date = new Date(user.createdAt);
+    const formattedDate = date.toISOString().split('T')[0];
 
     return (
         <main className="main--profile">
-            <p>my profile</p>
-            <p>
-                {user.artworks.length > 0 ? user.artworks.length == 1 ? (
-                    `you created 1 artwork`
-                ) : (
-                    `you created ${user.artworks.length} artworks`
-                ) : (
-                    `user has no artworks`
-                )}
-            </p>
-            {user.artworks.length > 0 &&
-                <div className="artworks">
-                    {user.artworks.map((artwork) => (
-                        <ArtworkCard key={artwork.id} artwork={artwork} creator={false} />
-                    ))}
+            <div className="user__profile">
+                <div className="profile__icon">
+                    <RxPerson className="icon" />
                 </div>
-            }
+                <h2>{user.username}</h2>
+                <p>Joined {formattedDate}</p>
+            </div>
+            <div className="artworks__wrapper">
+                <div className="artworks__title">
+                    <h3>Your artworks</h3>
+                    <p>
+                        {user.artworks.length > 0 ? user.artworks.length == 1 ? (
+                            `you created 1 artwork`
+                        ) : (
+                            `you created ${user.artworks.length} artworks`
+                        ) : (
+                            `user has no artworks`
+                        )}
+                    </p>
+                </div>
+                {user.artworks.length > 0 &&
+                    <div className="artworks">
+                        {user.artworks.map((artwork) => (
+                            <ArtworkCard key={artwork.id} artwork={artwork} showCreator={false} titleShort={false} />
+                        ))}
+                    </div>
+                }
+                <Link className="button button--primary profile__button" to="/artwork/generate">
+                    <div className="profile__button--wrapper">
+                        <RxPlus />
+                        add artwork
+                    </div>
+                </Link>
+            </div>
         </main>
     )
 }

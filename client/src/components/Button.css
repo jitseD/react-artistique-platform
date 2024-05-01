@@ -13,7 +13,7 @@ button,
     cursor: pointer;
 }
 
-button{
+button {
     width: 100%;
     display: grid;
     place-items: center;
@@ -28,4 +28,35 @@ button:active,
 .button:active {
     background-color: var(--c-fg);
     color: var(--c-bg);
+}
+
+.button--primary {
+    background-color: var(--c-fg);
+    color: var(--c-bg);
+}
+
+.button--primary:active {
+    background-color: var(--c-bg);
+    color: var(--c-fg);
+}
+
+.nav__button {
+    border-color: var(--c-white);
+    background-color: var(--c-black);
+    color: var(--c-white);
+}
+
+.nav__button--:active {
+    background-color: var(--c-white);
+    color: var(--c-black);
+}
+
+.nav__button--primary {
+    background-color: var(--c-white);
+    color: var(--c-black);
+}
+
+.nav__button--primary:active {
+    background-color: var(--c-black);
+    color: var(--c-white);
 }

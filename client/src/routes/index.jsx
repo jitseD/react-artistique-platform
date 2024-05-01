@@ -1,17 +1,20 @@
 import { useEffect } from "react"
 import { useLoaderData, Form, useNavigation, useSubmit } from "react-router-dom"
 import { getArtworks } from "../services/artworks";
+import { getAuthData } from "../services/auth";
 import ArtworkCard from "../components/ArtworkCard";
 
 const loader = async ({ request }) => {
     const url = new URL(request.url);
     const q = url.searchParams.get("q")
     const artworks = await getArtworks(q);
-    return { artworks, q };
+
+    const creator = getAuthData().user;
+    return { artworks, q, creator };
 }
 
 const Index = () => {
-    const { artworks, q } = useLoaderData();
+    const { artworks, q , creator} = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
 
@@ -43,7 +46,7 @@ const Index = () => {
             </Form>
             <div className="artworks">
                 {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} creator={true} />
+                    <ArtworkCard key={artwork.id} artwork={artwork} creator={creator} showCreator={true} titleShort={true}/>
                 ))}
             </div>
         </main>

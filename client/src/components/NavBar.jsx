@@ -11,11 +11,12 @@ const NavBar = () => {
             <div className="nav__links">
                 <NavLink to={`/`} className={`nav__link`} >artworks</NavLink>
                 <NavLink to="/artwork/generate" className="nav__link" >create</NavLink>
+                <NavLink to={`/profile/${user.id}`} className="nav__link" >profile</NavLink>
             </div>
 
             <div className="nav__buttons">
                 <fetcher.Form method="post" action="/logout">
-                    <button className="nav__button nav__button--primary" type="submit" disabled={isLoggingOut}>
+                    <button className="nav__button" type="submit" disabled={isLoggingOut}>
                         {isLoggingOut ? "Signing out..." : "Sign out"}
                     </button>
                 </fetcher.Form>
@@ -29,7 +30,7 @@ const NavBar = () => {
             </div>
             <div className="nav__buttons">
                 <NavLink to={`/login`} className="nav__link button nav__button nav__button--primary" >login</NavLink>
-                <NavLink to={`/register`} className="nav__link button nav__button nav__button--primary" >register</NavLink>
+                <NavLink to={`/register`} className="nav__link button nav__button" >register</NavLink>
             </div>
         </nav>
     );

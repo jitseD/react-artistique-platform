@@ -7,7 +7,6 @@ import Canvas from "../components/Canvas";
 const loader = async ({ params }) => {
     const loggedInUser = getAuthData().user;
     const artwork = await getArtworkById(params.id);
-    console.log(loggedInUser);
     if (loggedInUser && loggedInUser.id == artwork.creator.data.id) {
         return { artwork, creator: true };
     }
@@ -34,29 +33,38 @@ const ArtworkDetail = () => {
                     styling={{ dropShadow: artwork.dropShadow, gradient: artwork.gradient, grain: artwork.grain }}
                 />
             </div>
-            <div className="artwork__details">
-                <div className="details__info">
-                    <h2>{artwork.title}</h2>
-                    <div className="details__detail">
-                        {artwork.creator.data && (
-                            <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
-                                <RxPerson className="icon" />
-                                <p>{artwork.creator.data.attributes.username}</p>
-                            </Link>
-                        )}
-                        <div className="artwork__date">
-                            <RxCalendar className="icon" />
-                            <p>{formattedDate}</p>
+            <div className="artwork__details--wrapper">
+                <div className="artwork__details">
+                    <div className="details__info">
+                        <h2>{artwork.title}</h2>
+                        <div className="details__detail">
+                            {creator ? (
+                                <div className="artwork__creator">
+                                    <RxPerson className="icon" />
+                                    <p>by you</p>
+                                </div>
+                            ) : (
+                                artwork.creator.data && (
+                                    <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
+                                        <RxPerson className="icon" />
+                                        <p>{artwork.creator.data.attributes.username}</p>
+                                    </Link>
+                                )
+                            )}
+                            <div className="artwork__date">
+                                <RxCalendar className="icon" />
+                                <p>{formattedDate}</p>
+                            </div>
                         </div>
+                        {artwork.description && <p>{artwork.description}</p>}
                     </div>
-                    {artwork.description && <p>{artwork.description}</p>}
+                    {creator &&
+                        <Link className="button button--detail" to={`/artwork/edit/${artwork.id}`}>
+                            <RxPencil2 className="icon" />
+                            edit
+                        </Link>
+                    }
                 </div>
-                {creator &&
-                    <Link className="button button--detail" to={`/artwork/edit/${artwork.id}`}>
-                        <RxPencil2 className="icon" />
-                        edit
-                    </Link>
-                }
             </div>
         </main>
     )

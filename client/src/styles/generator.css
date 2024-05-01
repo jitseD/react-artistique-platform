@@ -79,6 +79,11 @@ main {
     transition: color 0.25s;
 }
 
+.main--generator .button--primary,
+.main--edit .button--primary {
+    color: var(--c-bg);
+}
+
 svg {
     border-radius: 5px;
 }
