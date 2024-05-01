@@ -3,7 +3,7 @@ import { getToken } from "./auth";
 
 const getArtworks = async (searchTerm) => {
     const query = {
-        sort: ["title", "description", "createdAt"],
+        sort: ["createdAt", "title", "description"],
         populate: ["creator"]
     };
 

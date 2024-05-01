@@ -33,9 +33,11 @@
     gap: 1rem;
 }
 
-.artwork__creator {
+.artwork__creator,
+.artwork__date {
     display: flex;
     gap: 0.5rem;
+    width: fit-content;
 }
 
 .artwork__title--short,
@@ -45,10 +47,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.icon--person {
-    color: var(--c-black);
 }
 
 .artwork__description--short {

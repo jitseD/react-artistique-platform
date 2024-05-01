@@ -11,7 +11,7 @@ const ArtworkCard = ({ artwork, creator }) => {
                 <h3 className="artwork__title--short">{artwork.title}</h3>
                 {creator &&
                     <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
-                        <RxPerson className="icon--person" />
+                        <RxPerson className="icon" />
                         <p>{artwork.creator.data.attributes.username}</p>
                     </Link>
                 }

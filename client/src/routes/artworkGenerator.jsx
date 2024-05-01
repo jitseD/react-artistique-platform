@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Form, redirect, useLoaderData } from "react-router-dom";
+import { Form, redirect, useLoaderData, Link } from "react-router-dom";
 import { canvas } from "../context/CanvasContext";
 import { getAuthData } from "../services/auth";
 import Canvas from "../components/Canvas";
@@ -8,18 +8,18 @@ import '../styles/generator.css'
 
 import { createArtwork } from "../services/artworks";
 
-const loader = async () => {
+const loader = async ({ request }) => {
   const { user } = getAuthData();
   let loggedIn;
   if (!user) {
     loggedIn = false;
-    // let params = new URLSearchParams();
-    // params.set("from", new URL(request.url).pathname);
-    // return redirect("/login?" + params.toString());
-    return { loggedIn }
+    let params = new URLSearchParams();
+    params.set("from", new URL(request.url).pathname);
+    const searchParam = params.toString()
+    return { loggedIn, searchParam }
   }
   loggedIn = true
-  return { loggedIn };
+  return { loggedIn, searchParam: null };
 };
 
 const action = async ({ request }) => {
@@ -123,7 +123,7 @@ const App = () => {
     }
   }
 
-  const { loggedIn } = useLoaderData();
+  const { loggedIn, searchParam } = useLoaderData();
   const [formVisible, setFormVisible] = useState(false);
 
   return (
@@ -151,9 +151,11 @@ const App = () => {
               lines={lines} onTotalChange={(v) => handleValueChange(`lines`, `total`, v)} onRotationChange={(v) => handleValueChange(`lines`, `rotation`, v)}
               frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
             />
-            {loggedIn &&
+            {loggedIn ? (
               <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
-            }
+            ) : (
+              <p>Want to save this artwork? <Link to={`/login?${searchParam}`}>Log in</Link> first</p>
+            )}
           </>
         ) : (
           <Form method="post" id="artwork-form">
