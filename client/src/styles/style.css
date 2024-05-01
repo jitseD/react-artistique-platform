@@ -387,12 +387,21 @@ textarea:focus {
     gap: 5rem;
 }
 
-.artworks__wrapper {
+.artworks__wrapper,
+.collections__wrapper {
     align-self: flex-start;
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    width: 100%;
+}
+
+.collections__wrapper{
     padding-bottom: 5rem;
+}
+
+.collections__wrapper .collection__card {
+    grid-template-rows: 1fr;
 }
 
 .main--profile .artworks,

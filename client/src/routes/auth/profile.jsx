@@ -1,8 +1,9 @@
 import { redirect, useLoaderData, Link } from "react-router-dom";
 import { getAuthData } from "../../services/auth";
 import { getUserById } from "../../services/user";
-import ArtworkCard from "../../components/ArtworkCard";
 import { RxPlus, RxPerson } from "react-icons/rx";
+import ArtworkCard from "../../components/ArtworkCard";
+import CollectionCard from "../../components/CollectionCard";
 
 const loader = async ({ params }) => {
     const loggedInUser = getAuthData().user;
@@ -18,6 +19,7 @@ const loader = async ({ params }) => {
 const Profile = () => {
     const { user } = useLoaderData();
 
+    console.log(user.collections);
     const date = new Date(user.createdAt);
     const formattedDate = date.toISOString().split('T')[0];
 
@@ -56,6 +58,18 @@ const Profile = () => {
                         add artwork
                     </div>
                 </Link>
+            </div>
+            <div className="collections__wrapper">
+                <h3>collections</h3>
+                {user.collections.length > 0 ? (
+                    <div className="collections">
+                        {user.collections.map((collection) => (
+                            <CollectionCard key={collection.id} collection={collection} showArtworks={false} showCreator={false} titleShort={false} />
+                        ))}
+                    </div>
+                ) : (
+                    <p>this user has no collections yet</p>
+                )}
             </div>
         </main>
     )
