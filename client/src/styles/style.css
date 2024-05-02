@@ -540,3 +540,32 @@ textarea {
     gap: 4rem;
     width: 100%;
 }
+
+/* ----- error ----- */
+
+.main--error {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.error__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.error__message,
+.error__link {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.error__button {
+    display: grid;
+    place-items: center;
+}
