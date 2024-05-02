@@ -4,8 +4,6 @@ import NavBar from "../components/NavBar";
 import { getAuthData } from "../services/auth";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 
-
-
 const loader = async () => {
     const { user } = getAuthData();
     return { user };

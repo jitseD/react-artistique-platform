@@ -31,6 +31,7 @@ const getArtworkById = async (id) => {
 };
 
 const createArtwork = async (data) => {
+    console.log(data);
     const artwork = await fetchApi(
         {
             endpoint: "artworks",
@@ -44,6 +45,7 @@ const createArtwork = async (data) => {
             },
         }
     );
+    console.log(artwork);
     return unwrapAtributes(artwork);
 };
 
