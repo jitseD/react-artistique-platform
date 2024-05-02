@@ -13,8 +13,9 @@ import ArtworkGenerator from './routes/artworkGenerator';
 import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
 import Artworks from './routes/artworks';
-import Collections from './routes/collections';
+import CollectionCreate from './routes/collectionCreate';
 import CollectionDetail from './routes/collectionDetail';
+import Collections from './routes/collections';
 import Root from './routes/root';
 import User from './routes/user';
 
@@ -55,8 +56,13 @@ const router = createBrowserRouter([
       {
         path: "/Collection/detail/:id",
         element: <CollectionDetail />,
-        action: CollectionDetail.action,
         loader: CollectionDetail.loader,
+      },
+      {
+        path: "/Collection/create",
+        element: <CollectionCreate />,
+        loader: CollectionCreate.loader,
+        action: CollectionCreate.action,
       },
       {
         path: "/login",

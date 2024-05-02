@@ -36,7 +36,7 @@ const Profile = () => {
                 {user.artworks.length > 0 ? (
                     <div className="artworks">
                         {user.artworks.map((artwork) => (
-                            <ArtworkCard key={artwork.id} artwork={artwork} showCreator={false} titleShort={false} />
+                            <ArtworkCard key={artwork.id} artwork={artwork} showCreator={false} titleShort={false} add={false} />
                         ))}
                     </div>
                 ) : (

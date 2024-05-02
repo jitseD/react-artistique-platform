@@ -396,7 +396,7 @@ textarea:focus {
     width: 100%;
 }
 
-.collections__wrapper{
+.collections__wrapper {
     padding-bottom: 5rem;
 }
 
@@ -485,4 +485,58 @@ textarea:focus {
 
 .artworks--collection .artwork__card {
     height: max-content;
+}
+
+.collection__form {
+    background-color: var(--c-black);
+    color: var(--c-white);
+    grid-column: 1;
+    grid-row: 1;
+    place-self: flex-start;
+    gap: 5rem;
+    width: 50vw;
+    height: 100vh;
+    padding: 5rem 8rem;
+    display: grid;
+    place-items: center;
+    position: fixed;
+}
+
+.collection__form h2 {
+    color: var(--c-white);
+    justify-self: flex-start;
+    align-self: flex-end;
+}
+
+.collection__form--create {
+    align-self: flex-start;
+    width: 100%;
+}
+
+.collection__form--create * {
+    color: var(--c-white);
+}
+
+.collection__form--create * ::selection {
+    background-color: var(--c-white);
+    color: var(--c-black);
+}
+
+.collection__form--create input[type="text"],
+.collection__form--create textarea {
+    border-color: var(--c-white);
+}
+
+textarea {
+    background-color: unset;
+}
+
+.collection__artworks--create {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 5rem 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 100%;
 }

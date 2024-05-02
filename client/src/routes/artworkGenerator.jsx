@@ -154,7 +154,7 @@ const App = () => {
             {loggedIn ? (
               <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
             ) : (
-              <p>Want to save this artwork? <Link to={`/login?${searchParam}`}>Log in</Link> first</p>
+                <p>Want to save this artwork? <Link to={`/login?${searchParam}`}>Log in</Link> first</p>
             )}
           </>
         ) : (

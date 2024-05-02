@@ -10,11 +10,11 @@ const loader = async ({ request }) => {
     const collections = await getCollections(q);
 
     const creator = getAuthData().user;
-    return { collections, creator , q};
+    return { collections, creator, q };
 }
 
 const Collections = () => {
-    const { collections,q, creator } = useLoaderData();
+    const { collections, q, creator } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
 
@@ -46,7 +46,7 @@ const Collections = () => {
             </Form>
             <div className="collections">
                 {collections.map((collection) => (
-                    <CollectionCard key={collection.id} collection={collection} creator={creator} showCreator={true} titleShort={true}/>
+                    <CollectionCard key={collection.id} showArtworks={true} collection={collection} creator={creator} showCreator={true} titleShort={true} />
                 ))}
             </div>
         </main>

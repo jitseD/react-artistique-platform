@@ -3,26 +3,52 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { RxPerson } from "react-icons/rx";
 import Canvas from "./Canvas";
+import { RxPlus, RxTrash } from 'react-icons/rx';
 
-const ArtworkCard = ({ artwork, showCreator, titleShort, creator }) => {
+const ArtworkCard = ({ artwork, showCreator, titleShort, creator, add, buttonState, onClickButton }) => {
+    const CardWrapper = add ? "div" : Link;
+    const cardProps = add ? {} : { to: `/artwork/detail/${artwork.id}` };
+
     return (
-        <Link to={`/artwork/detail/${artwork.id}`} className={`artwork__card artwork__card--${artwork.darkMode ? `dark` : `light`}`}>
-            <div className="artwork__info">
-                <h3 className={`artwork__title ${titleShort && `artwork__title--short`}`}>{artwork.title}</h3>
-                {showCreator ? (
-                    creator.id === artwork.creator.data.id ? (
-                        <div className="artwork__creator">
-                            <RxPerson className="icon" />
-                            <p>by you</p>
-                        </div>
+        <CardWrapper className={`artwork__card artwork__card--${artwork.darkMode ? `dark` : `light`}`} {...cardProps}>
+            <div className="artwork__info--wrapper">
+                <div className="artwork__info">
+                    <h3 className={`artwork__title ${titleShort && `artwork__title--short`}`}>{artwork.title}</h3>
+                    {showCreator ? (
+                        creator && creator.id === artwork.creator.data.id ? (
+                            <div className="artwork__creator">
+                                <RxPerson className="icon" />
+                                <p>by you</p>
+                            </div>
+                        ) : (
+                            <div className="artwork__creator">
+                                <RxPerson className="icon" />
+                                <p>{artwork.creator.data.attributes.username}</p>
+                            </div>
+                        )) : (``)
+                    }
+                    {artwork.description && <p className="artwork__description--short">{artwork.description}</p>}
+                </div>
+                {add ? (
+                    buttonState ? (
+                        <button type="button" className='button artwork__button' onClick={() => onClickButton("remove", artwork.id)}>
+                            <div className="profile__button--wrapper">
+                                <RxTrash />
+                                remove from collection
+                            </div>
+                        </button>
                     ) : (
-                        <div className="artwork__creator">
-                            <RxPerson className="icon" />
-                            <p>{artwork.creator.data.attributes.username}</p>
-                        </div>
-                    )) : (``)
-                }
-                {artwork.description && <p className="artwork__description--short">{artwork.description}</p>}
+                        <button type="button" className='button artwork__button' onClick={() => onClickButton("add", artwork.id)}>
+                            <div className="profile__button--wrapper">
+                                <RxPlus />
+                                add to collection
+                            </div>
+                        </button>
+                    )
+
+                ) : (
+                    ``
+                )}
             </div>
             <Canvas
                 id={artwork.id}
@@ -38,7 +64,7 @@ const ArtworkCard = ({ artwork, showCreator, titleShort, creator }) => {
                     grain: artwork.grain
                 }}
             />
-        </Link>
+        </CardWrapper>
     )
 }
 
@@ -46,6 +72,9 @@ ArtworkCard.propTypes = {
     artwork: PropTypes.object.isRequired,
     showCreator: PropTypes.bool.isRequired,
     creator: PropTypes.object,
+    add: PropTypes.bool.isRequired,
+    buttonState: PropTypes.bool,
+    onClickButton: PropTypes.func,
     titleShort: PropTypes.bool.isRequired,
 };
 

@@ -57,7 +57,7 @@ const Artworks = () => {
             <div className="artworks artworks--collection">
                 {collection.artworks && collection.artworks.data.length > 0 ? (
                     collection.artworks.data.map((artwork) => (
-                        <ArtworkCard key={artwork.id} artwork={unwrapAtributes(artwork)} showCreator={false} titleShort={true} />
+                        <ArtworkCard key={artwork.id} artwork={unwrapAtributes(artwork)} showCreator={false} titleShort={true} add={false} />
                     ))
                 ) : (
                     <p className="collection__artworks--empty">this collection has no artworks</p>

@@ -8,17 +8,16 @@ const loader = async ({ request }) => {
     const url = new URL(request.url);
     const q = url.searchParams.get("q")
     const artworks = await getArtworks(q);
-
-    const creator = getAuthData().user;
-    return { artworks, q, creator };
+    const loggedInUser = getAuthData().user;
+    return { artworks, q, loggedInUser };
 }
 
 const Artworks = () => {
-    const { artworks, q , creator} = useLoaderData();
+    const { artworks, q, loggedInUser } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
 
-    console.log(artworks);
+    console.log(loggedInUser);
 
     const searching =
         navigation.location &&
@@ -46,7 +45,7 @@ const Artworks = () => {
             </Form>
             <div className="artworks">
                 {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} creator={creator} showCreator={true} titleShort={true}/>
+                    <ArtworkCard key={artwork.id} artwork={artwork} creator={loggedInUser} showCreator={true} titleShort={true} />
                 ))}
             </div>
         </main>

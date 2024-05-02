@@ -48,7 +48,7 @@ const Profile = () => {
                 {user.artworks.length > 0 &&
                     <div className="artworks">
                         {user.artworks.map((artwork) => (
-                            <ArtworkCard key={artwork.id} artwork={artwork} showCreator={false} titleShort={false} />
+                            <ArtworkCard key={artwork.id} artwork={artwork} showCreator={false} titleShort={false} add={false} />
                         ))}
                     </div>
                 }
@@ -70,6 +70,12 @@ const Profile = () => {
                 ) : (
                     <p>this user has no collections yet</p>
                 )}
+                <Link className="button button--primary profile__button" to="/collection/create">
+                    <div className="profile__button--wrapper">
+                        <RxPlus />
+                        add collection
+                    </div>
+                </Link>
             </div>
         </main>
     )

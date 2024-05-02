@@ -10,8 +10,6 @@ const fetchApi = async ({
         endpoint = endpoint.slice(1);
     }
 
-    console.log(query);
-
     const url = new URL(`${import.meta.env.VITE_STRAPI_URL}/api/${endpoint}${query ? `?${qs.stringify(query, { encode: false })}` : ``}`);
 
     console.log("Fetching...", url.toString());

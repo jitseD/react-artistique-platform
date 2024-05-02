@@ -1,4 +1,5 @@
 import { fetchApi, unwrapAtributes } from "./strapi";
+import { getToken } from "./auth";
 
 const getCollections = async (searchTerm) => {
     const query = {
@@ -31,22 +32,22 @@ const getCollectionById = async (id) => {
     return unwrapAtributes(collection);
 };
 
-// const createCollection = async (data) => {
-//     const collection = await fetchApi(
-//         {
-//             endpoint: "collections",
-//         },
-//         {
-//             method: "POST",
-//             body: JSON.stringify({ data }),
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 Authorization: `Bearer ${getToken()}`
-//             },
-//         }
-//     );
-//     return unwrapAtributes(collection);
-// };
+const createCollection = async (data) => {
+    const collection = await fetchApi(
+        {
+            endpoint: "collections",
+        },
+        {
+            method: "POST",
+            body: JSON.stringify({ data }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getToken()}`
+            },
+        }
+    );
+    return unwrapAtributes(collection);
+};
 
 // const editCollection = async (id, data) => {
 //     const collection = await fetchApi(
@@ -65,4 +66,4 @@ const getCollectionById = async (id) => {
 //     return unwrapAtributes(collection);
 // };
 
-export { getCollections, getCollectionById };
+export { getCollections, getCollectionById, createCollection };

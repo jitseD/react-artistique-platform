@@ -40,32 +40,48 @@ button:active,
     color: var(--c-fg);
 }
 
-.nav__button {
+.nav__button,
+.collection__form--create .button {
     border-color: var(--c-white);
     background-color: var(--c-black);
     color: var(--c-white);
 }
 
-.nav__button--:active {
+.nav__button--:active,
+.collection__form--create .button:active {
     background-color: var(--c-white);
     color: var(--c-black);
 }
 
-.nav__button--primary {
+.nav__button--primary,
+.collection__form--create .button--primary {
     background-color: var(--c-white);
     color: var(--c-black);
 }
 
-.nav__button--primary:active {
+.nav__button--primary:active,
+.collection__form--create .button--primary:active {
     background-color: var(--c-black);
     color: var(--c-white);
 }
 
 .profile__button {
-    width: 9.5rem;
+    width: 10.5rem;
     display: grid;
     place-items: center;
     background-color: var(--c-black);
     border-color: var(--c-black);
     color: var(--c-white);
+}
+
+.artwork__card--light .artwork__button {
+    background-color: var(--c-black);
+    border-color: var(--c-white);
+    color: var(--c-white);
+}
+
+.artwork__card--dark .artwork__button {
+    background-color: var(--c-white);
+    border-color: var(--c-black);
+    color: var(--c-black);
 }
