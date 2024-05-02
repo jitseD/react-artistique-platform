@@ -54,13 +54,15 @@ button:active,
 }
 
 .nav__button--primary,
-.collection__form--create .button--primary {
+.collection__form--create .button--primary,
+.button--detail {
     background-color: var(--c-white);
     color: var(--c-black);
 }
 
 .nav__button--primary:active,
-.collection__form--create .button--primary:active {
+.collection__form--create .button--primary:active,
+.button--detail:active {
     background-color: var(--c-black);
     color: var(--c-white);
 }

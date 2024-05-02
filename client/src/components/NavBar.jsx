@@ -2,9 +2,9 @@ import { useRouteLoaderData, NavLink, useFetcher } from "react-router-dom";
 
 
 const NavBar = () => {
-    let { user } = useRouteLoaderData("root");
+    const { user } = useRouteLoaderData("root");
     const fetcher = useFetcher();
-    let isLoggingOut = fetcher.formData != null;
+    const isLoggingOut = fetcher.formData != null;
 
     return user ? (
         <nav className="nav__bar">

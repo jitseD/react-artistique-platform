@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { redirect, Form, Link, useLoaderData } from "react-router-dom"
+import { redirect, useRouteLoaderData, Form, Link, useLoaderData } from "react-router-dom"
 import { createCollection } from "../services/collections";
 import { getArtworks } from "../services/artworks";
 import { getAuthData } from "../services/auth";
@@ -7,28 +7,27 @@ import ArtworkCard from "../components/ArtworkCard";
 
 const loader = async ({ request }) => {
     const artworks = await getArtworks();
-    const loggedInUser = getAuthData().user;
-    if (!loggedInUser) {
+    const {user} = getAuthData();
+    if (!user) {
         let params = new URLSearchParams();
         params.set("from", new URL(request.url).pathname);
         const searchParam = params.toString()
         return redirect(`/login?${searchParam}`)
     }
-    return { artworks, loggedInUser };
+    return { artworks };
 }
 
 const action = async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     data.artworks = JSON.parse(data.artworks);
-    console.log(data);
     await createCollection(data);
     return redirect(`/`);
 };
 
 const CollectionCreate = () => {
-    const { artworks, loggedInUser } = useLoaderData();
-    console.log(artworks);
+    const { artworks } = useLoaderData();
+    const { user } = useRouteLoaderData("root");
 
     const [addedArtworks, setAddedArtworks] = useState([]);
 
@@ -44,7 +43,6 @@ const CollectionCreate = () => {
             }
         }
         setAddedArtworks(newAddedArtworks);
-        console.log(newAddedArtworks);
     }
 
     return (
@@ -63,13 +61,13 @@ const CollectionCreate = () => {
                     <input type="hidden" name="artworks" defaultValue={JSON.stringify(addedArtworks)} />
                     <div className="button__wrapper">
                         <Link className="button" to={`/`}>cancel</Link>
-                        <button className="button button--primary" type="submit">save</button>
+                        <button className="button button--primary" type="submit">create</button>
                     </div>
                 </Form>
             </div>
             <div className="collection__artworks--create">
                 {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} showCreator={true} creator={loggedInUser} titleShort={true} add={true} buttonState={addedArtworks.includes(artwork.id)} onClickButton={(state, id) => handleAddRemoveClick(state, id)} />
+                    <ArtworkCard key={artwork.id} artwork={artwork} showCreator={true} creator={user} titleShort={true} add={true} buttonState={addedArtworks.includes(artwork.id)} onClickButton={(state, id) => handleAddRemoveClick(state, id)} />
                 ))}
             </div>
         </main>

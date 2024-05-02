@@ -7,8 +7,8 @@ import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 
 
 const loader = async () => {
-    const data = getAuthData();
-    return data;
+    const { user } = getAuthData();
+    return { user };
 };
 
 const Root = () => {

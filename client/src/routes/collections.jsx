@@ -1,7 +1,6 @@
 import { useEffect } from "react"
-import { useLoaderData, Form, useNavigation, useSubmit } from "react-router-dom"
+import { useLoaderData, Form, useRouteLoaderData, useNavigation, useSubmit } from "react-router-dom"
 import { getCollections } from "../services/collections";
-import { getAuthData } from "../services/auth";
 import CollectionCard from "../components/CollectionCard";
 
 const loader = async ({ request }) => {
@@ -9,16 +8,15 @@ const loader = async ({ request }) => {
     const q = url.searchParams.get("q")
     const collections = await getCollections(q);
 
-    const creator = getAuthData().user;
-    return { collections, creator, q };
+    return { collections, q };
 }
 
 const Collections = () => {
-    const { collections, q, creator } = useLoaderData();
+    const { collections, q } = useLoaderData();
+    const { user } = useRouteLoaderData("root");
+
     const navigation = useNavigation();
     const submit = useSubmit();
-
-    console.log(collections);
 
     const searching =
         navigation.location &&
@@ -46,7 +44,7 @@ const Collections = () => {
             </Form>
             <div className="collections">
                 {collections.map((collection) => (
-                    <CollectionCard key={collection.id} showArtworks={true} collection={collection} creator={creator} showCreator={true} titleShort={true} />
+                    <CollectionCard key={collection.id} showArtworks={true} collection={collection} creator={user} showCreator={true} titleShort={true} />
                 ))}
             </div>
         </main>

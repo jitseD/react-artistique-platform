@@ -5,9 +5,9 @@ import { RxPerson, RxCalendar, RxPencil2 } from "react-icons/rx";
 import Canvas from "../components/Canvas";
 
 const loader = async ({ params }) => {
-    const loggedInUser = getAuthData().user;
+    const {user} = getAuthData();
     const artwork = await getArtworkById(params.id);
-    if (loggedInUser && loggedInUser.id == artwork.creator.data.id) {
+    if (user && user.id == artwork.creator.data.id) {
         return { artwork, creator: true };
     }
     return { artwork, creator: false };

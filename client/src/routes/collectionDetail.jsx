@@ -6,10 +6,10 @@ import ArtworkCard from "../components/ArtworkCard";
 import { RxPerson, RxCalendar, RxPencil2 } from "react-icons/rx";
 
 const loader = async ({ params }) => {
-    const loggedInUser = getAuthData().user;
+    const { user } = getAuthData();
     const collection = await getCollectionById(params.id);
-    if (loggedInUser && loggedInUser.id == collection.creator.data.id) {
-        return { collection, creator: loggedInUser };
+    if (user && user.id == collection.creator.data.id) {
+        return { collection, creator: user };
     }
     return { collection, creator: false };
 

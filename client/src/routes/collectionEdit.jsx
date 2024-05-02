@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { redirect, Form, Link, useLoaderData } from "react-router-dom"
+import { redirect, Form, Link, useRouteLoaderData, useLoaderData } from "react-router-dom"
 import { editCollection, getCollectionById } from "../services/collections";
 import { getArtworks } from "../services/artworks";
 import { getAuthData } from "../services/auth";
@@ -7,15 +7,15 @@ import ArtworkCard from "../components/ArtworkCard";
 
 const loader = async ({ params }) => {
     const artworks = await getArtworks();
-    const loggedInUser = getAuthData().user;
+    const {user} = getAuthData();
     const collection = await getCollectionById(params.id);
-    if (!loggedInUser) {
+    if (!user) {
         return redirect(`/collection/detail/?${params.id}`)
     }
-    if (loggedInUser.id != collection.creator.data.id) {
+    if (user.id != collection.creator.data.id) {
         return redirect(`/collection/detail/${params.id}`)
     }
-    return { artworks, collection, loggedInUser };
+    return { artworks, collection };
 }
 
 const action = async ({ request, params }) => {
@@ -27,8 +27,8 @@ const action = async ({ request, params }) => {
 };
 
 const CollectionCreate = () => {
-    const { artworks, collection, loggedInUser } = useLoaderData();
-    console.log(collection.artworks.data);
+    const { artworks, collection } = useLoaderData();
+    const { user } = useRouteLoaderData("root");
 
     const [addedArtworks, setAddedArtworks] = useState([...collection.artworks.data.map(item => item.id)]);
 
@@ -69,7 +69,7 @@ const CollectionCreate = () => {
             </div>
             <div className="collection__artworks--create">
                 {artworks.map((artwork) => (
-                    <ArtworkCard key={artwork.id} artwork={artwork} showCreator={true} creator={loggedInUser} titleShort={true} add={true} buttonState={addedArtworks.includes(artwork.id)} onClickButton={(state, id) => handleAddRemoveClick(state, id)} />
+                    <ArtworkCard key={artwork.id} artwork={artwork} showCreator={true} creator={user} titleShort={true} add={true} buttonState={addedArtworks.includes(artwork.id)} onClickButton={(state, id) => handleAddRemoveClick(state, id)} />
                 ))}
             </div>
         </main>

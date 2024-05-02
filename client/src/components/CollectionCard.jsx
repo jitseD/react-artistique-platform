@@ -5,8 +5,6 @@ import { RxPerson } from "react-icons/rx";
 import Canvas from "./Canvas";
 
 const CollectionCard = ({ collection, showCreator, showArtworks, titleShort, creator }) => {
-    console.log(showArtworks);
-
     return (
         <Link to={`/collection/detail/${collection.id}`} className={`collection__card ${!showArtworks && `collection__card--empty`}`}>
             <div className="collection__info">

@@ -17,7 +17,6 @@ const loader = async ({ params }) => {
 
 const Profile = () => {
     const { user } = useLoaderData();
-    console.log(user);
 
     const date = new Date(user.createdAt);
     const formattedDate = date.toISOString().split('T')[0];
