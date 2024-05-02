@@ -5,14 +5,14 @@ import { RxPerson } from "react-icons/rx";
 import Canvas from "./Canvas";
 
 const CollectionCard = ({ collection, showCreator, showArtworks, titleShort, creator }) => {
-    console.log(showCreator);
+    console.log(showArtworks);
 
     return (
-        <Link to={`/collection/detail/${collection.id}`} className={`collection__card ${showArtworks && `collection__card--empty`}`}>
+        <Link to={`/collection/detail/${collection.id}`} className={`collection__card ${!showArtworks && `collection__card--empty`}`}>
             <div className="collection__info">
                 <h3 className={`collection__title ${titleShort && `collection__title--short`}`}>{collection.title}</h3>
                 {showCreator ? (
-                    creator.id == collection.creator.data.id ? (
+                    creator && creator.id == collection.creator.data.id ? (
                         <div className="collection__creator">
                             <RxPerson className="icon" />
                             <p>by you</p>

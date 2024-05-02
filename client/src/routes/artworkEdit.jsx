@@ -22,7 +22,7 @@ const action = async ({ request, params }) => {
     const data = Object.fromEntries(formData);
     data.values = JSON.parse(data.values);
     await editArtwork(params.id, data);
-    return redirect(`/`);
+    return redirect(`/artwork/detail/${params.id}`);
 };
 
 const ArtworkEdit = () => {

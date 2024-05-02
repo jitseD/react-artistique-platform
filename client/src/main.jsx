@@ -14,6 +14,7 @@ import ArtworkEdit from './routes/artworkEdit';
 import ArtworkDetail from './routes/artworkDetail';
 import Artworks from './routes/artworks';
 import CollectionCreate from './routes/collectionCreate';
+import CollectionEdit from './routes/collectionEdit';
 import CollectionDetail from './routes/collectionDetail';
 import Collections from './routes/collections';
 import Root from './routes/root';
@@ -63,6 +64,12 @@ const router = createBrowserRouter([
         element: <CollectionCreate />,
         loader: CollectionCreate.loader,
         action: CollectionCreate.action,
+      },
+      {
+        path: "/Collection/Edit/:id",
+        element: <CollectionEdit />,
+        loader: CollectionEdit.loader,
+        action: CollectionEdit.action,
       },
       {
         path: "/login",

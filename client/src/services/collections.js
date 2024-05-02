@@ -49,21 +49,21 @@ const createCollection = async (data) => {
     return unwrapAtributes(collection);
 };
 
-// const editCollection = async (id, data) => {
-//     const collection = await fetchApi(
-//         {
-//             endpoint: `collections/${id}`,
-//         },
-//         {
-//             method: "PUT",
-//             body: JSON.stringify({ data }),
-//             headers: {
-//                 "Content-Type": "application/json",
-//                 Authorization: `Bearer ${getToken()}`
-//             },
-//         }
-//     );
-//     return unwrapAtributes(collection);
-// };
+const editCollection = async (id, data) => {
+    const collection = await fetchApi(
+        {
+            endpoint: `collections/${id}`,
+        },
+        {
+            method: "PUT",
+            body: JSON.stringify({ data }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${getToken()}`
+            },
+        }
+    );
+    return unwrapAtributes(collection);
+};
 
-export { getCollections, getCollectionById, createCollection };
+export { getCollections, getCollectionById, createCollection, editCollection };
