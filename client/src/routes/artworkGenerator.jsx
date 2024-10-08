@@ -27,7 +27,7 @@ const action = async ({ request }) => {
   const data = Object.fromEntries(formData);
   data.values = JSON.parse(data.values);
   await createArtwork(data);
-  return redirect(`/`);
+  return redirect(`${import.meta.env.BASE_URL}/`);
 };
 
 const generateRandomBool = () => {
@@ -154,7 +154,7 @@ const App = () => {
             {loggedIn ? (
               <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >create</button>
             ) : (
-                <p>Want to save this artwork? <Link to={`/login?${searchParam}`}>Log in</Link> first</p>
+                <p>Want to save this artwork? <Link to={`${import.meta.env.BASE_URL}/login?${searchParam}`}>Log in</Link> first</p>
             )}
           </>
         ) : (

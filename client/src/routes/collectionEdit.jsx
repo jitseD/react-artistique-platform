@@ -10,10 +10,10 @@ const loader = async ({ params }) => {
     const {user} = getAuthData();
     const collection = await getCollectionById(params.id);
     if (!user) {
-        return redirect(`/collection/detail/?${params.id}`)
+        return redirect(`${import.meta.env.BASE_URL}/collection/detail/?${params.id}`)
     }
     if (user.id != collection.creator.data.id) {
-        return redirect(`/collection/detail/${params.id}`)
+        return redirect(`${import.meta.env.BASE_URL}/collection/detail/${params.id}`)
     }
     return { artworks, collection };
 }
@@ -23,7 +23,7 @@ const action = async ({ request, params }) => {
     const data = Object.fromEntries(formData);
     data.artworks = JSON.parse(data.artworks);
     await editCollection(params.id, data);
-    return redirect(`/collection/detail/${params.id}`);
+    return redirect(`${import.meta.env.BASE_URL}/collection/detail/${params.id}`);
 };
 
 const CollectionCreate = () => {
@@ -62,7 +62,7 @@ const CollectionCreate = () => {
                     </label>
                     <input type="hidden" name="artworks" defaultValue={JSON.stringify(addedArtworks)} />
                     <div className="button__wrapper">
-                        <Link className="button" to={`/`}>cancel</Link>
+                        <Link className="button" to={`${import.meta.env.BASE_URL}/`}>cancel</Link>
                         <button className="button button--primary" type="submit">save</button>
                     </div>
                 </Form>

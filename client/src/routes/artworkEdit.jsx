@@ -9,10 +9,10 @@ const loader = async ({ params }) => {
     const { user } = getAuthData();
     const artwork = await getArtworkById(params.id);
     if (!user) {
-        return redirect(`/artwork/detail/${params.id}`);
+        return redirect(`${import.meta.env.BASE_URL}/artwork/detail/${params.id}`);
     }
     if (user.id != artwork.creator.data.id) {
-        return redirect(`/artwork/detail/${params.id}`);
+        return redirect(`${import.meta.env.BASE_URL}/artwork/detail/${params.id}`);
     }
     return { artwork };
 }
@@ -22,7 +22,7 @@ const action = async ({ request, params }) => {
     const data = Object.fromEntries(formData);
     data.values = JSON.parse(data.values);
     await editArtwork(params.id, data);
-    return redirect(`/artwork/detail/${params.id}`);
+    return redirect(`${import.meta.env.BASE_URL}/artwork/detail/${params.id}`);
 };
 
 const ArtworkEdit = () => {
@@ -99,7 +99,7 @@ const ArtworkEdit = () => {
                             frame={frame} onMarginChange={(v) => handleValueChange(`frame`, `margin`, v)} onDashesChange={(v) => handleValueChange(`frame`, `dashes`, v)}
                         />
                         <div className="button__wrapper">
-                            <Link className="button" to={`/artwork/detail/${artwork.id}`}>cancel</Link>
+                            <Link className="button" to={`${import.meta.env.BASE_URL}/artwork/detail/${artwork.id}`}>cancel</Link>
                             <button className="button button--primary" type="button" onClick={() => setFormVisible(true)} >update</button>
                         </div>
                     </>

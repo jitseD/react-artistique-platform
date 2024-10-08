@@ -16,7 +16,7 @@ export default function ErrorPage() {
         </div>
         <div className="error__link">
           <p>In the meanwhile</p>
-          <NavLink to={`/`} className={`button button--primary error__button`}>relax and explore some artworks</NavLink>
+          <NavLink to={`${import.meta.env.BASE_URL}/`} className={`button button--primary error__button`}>relax and explore some artworks</NavLink>
         </div>
       </div>
     </main>

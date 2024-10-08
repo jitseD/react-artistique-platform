@@ -7,7 +7,7 @@ import { RxPlus, RxTrash } from 'react-icons/rx';
 
 const ArtworkCard = ({ artwork, showCreator, titleShort, creator, add, buttonState, onClickButton }) => {
     const CardWrapper = add ? "div" : Link;
-    const cardProps = add ? {} : { to: `/artwork/detail/${artwork.id}` };
+    const cardProps = add ? {} : { to: `${import.meta.env.BASE_URL}/artwork/detail/${artwork.id}` };
 
     return (
         <CardWrapper className={`artwork__card artwork__card--${artwork.darkMode ? `dark` : `light`}`} {...cardProps}>

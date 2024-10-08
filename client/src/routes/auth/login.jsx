@@ -17,13 +17,13 @@ const action = async ({ request }) => {
         };
     }
     let redirectTo = formData.get("redirectTo");
-    return redirect(redirectTo || "/");
+    return redirect(redirectTo || `${import.meta.env.BASE_URL}/`);
 };
 
 const Login = () => {
     let location = useLocation();
     let params = new URLSearchParams(location.search);
-    let from = params.get("from") || "/";
+    let from = params.get("from") || `${import.meta.env.BASE_URL}/`;
 
     let navigation = useNavigation();
     let isLoggingIn = navigation.formData?.get("email") != null;

@@ -24,7 +24,7 @@ import User from './routes/user';
 const router = createBrowserRouter([
   {
     id: "root",
-    path: "/",
+    path: `${import.meta.env.BASE_URL}/`,
     element: <Root />,
     errorElement: <ErrorPage />,
     loader: Root.loader,
@@ -38,66 +38,66 @@ const router = createBrowserRouter([
             loader: Artworks.loader,
           },
           {
-            path: "/artwork/generate",
+            path: `${import.meta.env.BASE_URL}/artwork/generate`,
             element: <ArtworkGenerator />,
             loader: ArtworkGenerator.loader,
             action: ArtworkGenerator.action,
           },
           {
-            path: "/artwork/detail/:id",
+            path: `${import.meta.env.BASE_URL}/artwork/detail/:id`,
             element: <ArtworkDetail />,
             loader: ArtworkDetail.loader,
           },
           {
-            path: "/artwork/edit/:id",
+            path: `${import.meta.env.BASE_URL}/artwork/edit/:id`,
             element: <ArtworkEdit />,
             action: ArtworkEdit.action,
             loader: ArtworkEdit.loader,
           },
           {
-            path: "/collections",
+            path: `${import.meta.env.BASE_URL}/collections`,
             element: <Collections />,
             loader: Collections.loader,
           },
           {
-            path: "/collection/detail/:id",
+            path: `${import.meta.env.BASE_URL}/collection/detail/:id`,
             element: <CollectionDetail />,
             loader: CollectionDetail.loader,
           },
           {
-            path: "/collection/create",
+            path: `${import.meta.env.BASE_URL}/collection/create`,
             element: <CollectionCreate />,
             loader: CollectionCreate.loader,
             action: CollectionCreate.action,
           },
           {
-            path: "/collection/Edit/:id",
+            path: `${import.meta.env.BASE_URL}/collection/Edit/:id`,
             element: <CollectionEdit />,
             loader: CollectionEdit.loader,
             action: CollectionEdit.action,
           },
           {
-            path: "/login",
+            path: `${import.meta.env.BASE_URL}/login`,
             element: <Login />,
             action: Login.action,
           },
           {
-            path: "/register",
+            path: `${import.meta.env.BASE_URL}/register`,
             element: <Register />,
             action: Register.action,
           },
           {
-            path: "/profile/:id",
+            path: `${import.meta.env.BASE_URL}/profile/:id`,
             element: <Profile />,
             loader: Profile.loader,
           },
           {
-            path: "/user/:id",
+            path: `${import.meta.env.BASE_URL}/user/:id`,
             element: <User />,
             loader: User.loader,
           },
           {
-            path: "/logout",
+            path: `${import.meta.env.BASE_URL}/logout`,
             action: () => {
               removeAuthData();
               return redirect(`/`)

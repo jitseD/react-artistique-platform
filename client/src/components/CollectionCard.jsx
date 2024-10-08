@@ -6,7 +6,7 @@ import Canvas from "./Canvas";
 
 const CollectionCard = ({ collection, showCreator, showArtworks, titleShort, creator }) => {
     return (
-        <Link to={`/collection/detail/${collection.id}`} className={`collection__card ${!showArtworks && `collection__card--empty`}`}>
+        <Link to={`${import.meta.env.BASE_URL}/collection/detail/${collection.id}`} className={`collection__card ${!showArtworks && `collection__card--empty`}`}>
             <div className="collection__info">
                 <h3 className={`collection__title ${titleShort && `collection__title--short`}`}>{collection.title}</h3>
                 {showCreator ? (

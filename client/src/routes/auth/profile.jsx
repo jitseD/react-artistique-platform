@@ -8,7 +8,7 @@ import CollectionCard from "../../components/CollectionCard";
 const loader = async ({ params }) => {
     const loggedInUser = getAuthData().user;
     if (!loggedInUser || loggedInUser.id != params.id) {
-        return redirect("/user/" + params.id);
+        return redirect(`${import.meta.env.BASE_URL}/user/` + params.id);
     }
     const user = await getUserById(params.id);
     return { user };
@@ -51,7 +51,7 @@ const Profile = () => {
                         ))}
                     </div>
                 }
-                <Link className="button button--primary profile__button" to="/artwork/generate">
+                <Link className="button button--primary profile__button" to={`${import.meta.env.BASE_URL}/artwork/generate`}>
                     <div className="profile__button--wrapper">
                         <RxPlus />
                         add artwork
@@ -69,7 +69,7 @@ const Profile = () => {
                 ) : (
                     <p>this user has no collections yet</p>
                 )}
-                <Link className="button button--primary profile__button" to="/collection/create">
+                <Link className="button button--primary profile__button" to={`${import.meta.env.BASE_URL}/collection/create`}>
                     <div className="profile__button--wrapper">
                         <RxPlus />
                         add collection

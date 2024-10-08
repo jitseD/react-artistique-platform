@@ -8,7 +8,7 @@ import CollectionCard from "../components/CollectionCard";
 const loader = async ({ params }) => {
     const loggedInUser = getAuthData().user;
     if (loggedInUser && loggedInUser.id == params.id) {
-        return redirect("/profile/" + params.id);
+        return redirect(`${import.meta.env.BASE_URL}/profile/` + params.id);
     }
     const user = await getUserById(params.id);
     return { user };

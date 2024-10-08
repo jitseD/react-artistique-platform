@@ -12,7 +12,7 @@ const loader = async ({ request }) => {
         let params = new URLSearchParams();
         params.set("from", new URL(request.url).pathname);
         const searchParam = params.toString()
-        return redirect(`/login?${searchParam}`)
+        return redirect(`${import.meta.env.BASE_URL}/login?${searchParam}`)
     }
     return { artworks };
 }
@@ -22,7 +22,7 @@ const action = async ({ request }) => {
     const data = Object.fromEntries(formData);
     data.artworks = JSON.parse(data.artworks);
     await createCollection(data);
-    return redirect(`/`);
+    return redirect(`${import.meta.env.BASE_URL}/`);
 };
 
 const CollectionCreate = () => {
@@ -60,7 +60,7 @@ const CollectionCreate = () => {
                     </label>
                     <input type="hidden" name="artworks" defaultValue={JSON.stringify(addedArtworks)} />
                     <div className="button__wrapper">
-                        <Link className="button" to={`/`}>cancel</Link>
+                        <Link className="button" to={`${import.meta.env.BASE_URL}/`}>cancel</Link>
                         <button className="button button--primary" type="submit">create</button>
                     </div>
                 </Form>

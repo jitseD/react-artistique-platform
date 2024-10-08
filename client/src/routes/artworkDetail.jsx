@@ -45,7 +45,7 @@ const ArtworkDetail = () => {
                                 </div>
                             ) : (
                                 artwork.creator.data && (
-                                    <Link to={`/user/${artwork.creator.data.id}`} className="artwork__creator">
+                                    <Link to={`${import.meta.env.BASE_URL}/user/${artwork.creator.data.id}`} className="artwork__creator">
                                         <RxPerson className="icon" />
                                         <p>{artwork.creator.data.attributes.username}</p>
                                     </Link>
@@ -59,7 +59,7 @@ const ArtworkDetail = () => {
                         {artwork.description && <p>{artwork.description}</p>}
                     </div>
                     {creator &&
-                        <Link className="button button--detail" to={`/artwork/edit/${artwork.id}`}>
+                        <Link className="button button--detail" to={`${import.meta.env.BASE_URL}/artwork/edit/${artwork.id}`}>
                             <RxPencil2 className="icon" />
                             edit
                         </Link>
